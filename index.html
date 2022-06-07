@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <title>Isaac Marovitz</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans">
@@ -19,33 +18,35 @@
 </head>
 
 <body>
-    <input type="hidden" id="page-title" value="Home"/>
-    <div id="header"></div>
-    <div class="body-container">
-        <div class="name-splash">
-            <h1 class="title">Isaac Marovitz</h1>
-            <h3 id="subtitle" class="subtitle">Unity Game Dev, Rustacean</h3>
-            <script>
-                var quips = ['Stationary Salesman', 
-                            'Professional Dolphin Trainer', 
-                            'World-Renowned Pizza Taster', 
-                            'Gold Trader', 
-                            'Killer Robot', 
-                            'Parmesan Aficionado',
-                            'Fashionista',
-                            'Tardigrade Fanatic']
-                var item = quips[Math.floor(Math.random() * quips.length)];
-                var element = document.getElementById('subtitle');
-                element.innerText = element.innerText + ", " + item;
-            </script>
-            <div class="info-table">
-                <div class="info-item">London, UK</div>
-                <div class="seperator"></div>
-                <div class="info-item">He/They</div>
+    <input type="hidden" id="page-title" value="Home" />
+    <div class="page-container">
+        <div id="header"></div>
+        <div class="body-container">
+            <div class="name-splash">
+                <h1 class="title">Isaac Marovitz</h1>
+                <h3 id="subtitle" class="subtitle">Unity Game Dev, Rustacean</h3>
+                <script>
+                    var quips = ['Stationary Salesman',
+                        'Professional Dolphin Trainer',
+                        'World-Renowned Pizza Taster',
+                        'Gold Trader',
+                        'Killer Robot',
+                        'Parmesan Aficionado',
+                        'Fashionista',
+                        'Tardigrade Fanatic']
+                    var item = quips[Math.floor(Math.random() * quips.length)];
+                    var element = document.getElementById('subtitle');
+                    element.innerText = element.innerText + ", " + item;
+                </script>
+                <div class="info-table">
+                    <div class="info-item">London, UK</div>
+                    <div class="seperator"></div>
+                    <div class="info-item">He/They</div>
+                </div>
             </div>
         </div>
+        <div id="footer"></div>
     </div>
-    <div id="footer"></div>
 </body>
 
 </html>

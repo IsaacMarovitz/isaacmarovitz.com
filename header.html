@@ -3,28 +3,9 @@
 
 <body>
     <div class="navbar">
-        <div>
+        <div class="navbar-title-container">
             <h3 id="nav-title" class="navbar-text">> IsaacMarovitz\Dev_</h3>
-            <script>
-                var blink_speed = 1000
-                var dash_enabled = true
-                var title_start = "> IsaacMarovitz\\";
-                var page_title = $('#page-title').val();
-                var element = document.getElementById('nav-title');
-
-                element.innerText = title_start + page_title + "_";
-
-                var t = setInterval(() => {
-                    
-                    if (dash_enabled) {
-                        element.innerText = title_start + page_title;
-                        dash_enabled = false;
-                    } else {
-                        element.innerText = element.innerText + "_";
-                        dash_enabled = true;
-                    }
-                }, blink_speed);
-            </script>
+            <script src="../site_title.js"></script>
         </div>
         <div class="page-links">
             <a href="../">
