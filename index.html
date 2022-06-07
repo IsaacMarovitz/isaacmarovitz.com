@@ -5,6 +5,7 @@
     <title>Isaac Marovitz</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans">
     <link rel="stylesheet" href="../main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -22,8 +23,21 @@
     <div id="header"></div>
     <div class="body-container">
         <div class="name-splash">
-            <h1>Isaac Marovitz</h1>
-            <h3>Game Dev, Rustacean, [funny thing]</h3>
+            <h1 class="title">Isaac Marovitz</h1>
+            <h3 id="subtitle" class="subtitle">Unity Game Dev, Rustacean</h3>
+            <script>
+                var quips = ['Stationary Salesman', 
+                            'Professional Dolphin Trainer', 
+                            'World-Renowned Pizza Taster', 
+                            'Gold Trader', 
+                            'Killer Robot', 
+                            'Parmesan Aficionado',
+                            'Fashionista',
+                            'Tardigrade Fanatic']
+                var item = quips[Math.floor(Math.random() * quips.length)];
+                var element = document.getElementById('subtitle');
+                element.innerText = element.innerText + ", " + item;
+            </script>
             <div class="info-table">
                 <div class="info-item">London, UK</div>
                 <div class="seperator"></div>
