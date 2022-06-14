@@ -12,6 +12,13 @@ body {
     color: var(--text-color);
 }
 
+mark {
+    color: var(--sub-text-color);
+    font-weight: bold;
+    font-family: 'Noto Sans Mono';
+    background: none;
+}
+
 .body-container {
     margin-left: 5%;
     margin-right: 5%;
@@ -19,7 +26,17 @@ body {
 }
 
 a {
+    text-decoration: underline;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+.nav-link {
     text-decoration: none;
+}
+
+p {
+    font-family: 'Noto Sans';
 }
 
 .navbar {
@@ -60,13 +77,16 @@ a {
     text-align: center;
     color: var(--sub-text-color);
     font-family: 'Noto Sans';
+}
 
+.section {
+    height: 100vh;
 }
 
 .seperator {
     float: left;
     height: 100%;
-    width: 1;
+    width: 1px;
     padding-left: 1px;
     padding-right: 1px;
     border: 1px solid var(--sub-text-color);
@@ -99,13 +119,5 @@ a {
     .navbar {
         flex-flow: row wrap;
         height: auto;
-    }
-
-    .page-links {
-        
-    }
-
-    .navbar-title-container {
-        
     }
 }
