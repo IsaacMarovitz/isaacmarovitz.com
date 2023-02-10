@@ -11,6 +11,15 @@ import ProjectCard from '../components/project-card.astro';
 				<p class="text-center font-bold text-3xl">Back and <i class="pl-1 text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500">better than ever</i></p>
 			</div>
 		</div>
-		<ProjectCard name="Test" />
+		<ProjectCard 
+			name="PlayCover" 
+			description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control." 
+			image_path="./playcover.png"
+			flipped={false} />
+		<ProjectCard 
+			name="PlayCover" 
+			description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control." 
+			image_path="./playcover.png"
+			flipped={true} />
 	</main>
 </Layout>
