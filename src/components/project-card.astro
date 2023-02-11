@@ -9,12 +9,11 @@ interface Props {
 const { name, description, image_path, flipped } = Astro.props;
 ---
 
-{flipped ?
 <div class="relative overflow-clip h-xl flex">
-    <div class="absolute max-w-4xl max-h-4xl right-35vw">
+    <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right" : "left"}-35vw`}>
         <img class="object-scale-down" src={image_path}>
     </div>
-    <div class="flex flex-row-reverse grow self-end drop-shadow-md">
+    <div class={`flex flex-row${flipped ? "-reverse" : ""} grow self-end drop-shadow-md`}>
         <div class="flex flex-col transition duration-300 hover:ease-in-out bg-stone-900 hover:bg-gradient-to-br from-stone-800 to-stone-900 text-white rounded-xl m-20 p-10 drop-shadow-md hover:drop-shadow-xl hover:scale-105">
             <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
             <p>{description}</p>
@@ -22,17 +21,3 @@ const { name, description, image_path, flipped } = Astro.props;
         <div class="w-[100%]" />
     </div>
 </div>
-:
-<div class="relative overflow-clip h-xl flex">
-    <div class="absolute max-w-4xl max-h-4xl left-35vw">
-        <img class="object-scale-down" src={image_path}>
-    </div>
-    <div class="flex flex-row grow self-end drop-shadow-md">
-        <div class="flex flex-col transition duration-300 hover:ease-in-out bg-stone-900 hover:bg-gradient-to-br from-stone-800 to-stone-900 text-white rounded-xl m-20 p-10 drop-shadow-md hover:drop-shadow-xl hover:scale-105">
-            <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
-            <p>{description}</p>
-        </div>
-        <div class="w-[100%]" />
-    </div>
-</div>
-}
