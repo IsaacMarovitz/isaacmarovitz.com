@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@astrojs/partytown": "^1.0.3",
 		"@astrojs/vue": "^2.0.1",
+		"@heroicons/vue": "^2.0.15",
 		"astro": "^2.0.10",
 		"vue": "^3.2.47"
 	},
