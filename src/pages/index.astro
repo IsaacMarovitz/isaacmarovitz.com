@@ -1,14 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/project-card.astro';
+import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
 ---
 
-<Layout title="Coming soon...">
+<Layout title="Isaac Marovitz">
 	<main>
-		<div class="h-screen flex items-center justify-center">
-			<div class="flex flex-col transition duration-300 hover:ease-in-out bg-stone-900 hover:bg-gradient-to-br from-stone-800 to-stone-900 text-white rounded-xl p-10 drop-shadow-md hover:drop-shadow-xl hover:scale-105">
-				<h1 class="text-center font-extrabold text-8xl pb-3">Coming Soon...</h1>
-				<p class="text-center font-bold text-3xl">Back and <i class="pl-1 text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500">better than ever</i></p>
+		<div class="h-screen flex flex-col items-center justify-center px-10 snap-center">
+			<div class="flex w-[100%] flex-row items-center justify-start">
+				<div class="flex flex-col gap-10">
+					<div class="flex">
+						<div class="bg-stone-900 text-white rounded-xl p-5 drop-shadow-md">
+							<h1 class="text-center font-extrabold text-8xl pb-3">Hi there, I'm</h1>
+						</div>
+					</div>
+					<div class="flex">
+						<div class="bg-stone-900 rounded-xl p-5 drop-shadow-md">
+							<h1 class="text-center font-extrabold text-8xl pb-3 text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500">Isaac</h1>
+						</div>
+					</div>
+					<div class="flex">
+						<div class="bg-stone-900 rounded-full px-2 flex gap-2 drop-shadow-md transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-800 to-stone-900 hover:drop-shadow-xl hover:scale-105">
+							<a href="https://github.com/IsaacMarovitz" target="_blank" rel="noreferrer noopener" class=" fa fa-github text-white text-12 p-2" />
+							<a href="https://twitter.com/isaacmarovitz" target="_blank" rel="noreferrer noopener" class=" fa fa-twitter text-white text-12 p-2" />
+						</div>
+					</div>
+				</div>
+				<div class="grow"></div>
+				<img src="./profile.png" class="drop-shadow-md border-8 rounded-full h-70 w-70"/>
+			</div>
+			<div class="translate-y-[12vh]">
+				<a href="#Projects">
+					<ChevronDoubleDownIcon class="h-15 h-15 text-white bounce" />
+				</a>
 			</div>
 		</div>
+		<div id="Projects"></div>
+		<ProjectCard
+			name="PlayCover"
+			description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control." 
+			link="https://github.com/PlayCover/PlayCover"
+			image_path="./playcover.png"
+			flipped={false} />
+		<ProjectCard 
+			name="Ryujinx"
+			description="A modern Nintendo Switch emulator built from the ground up in C#. Ryujinx achieves impecable compatability while maintaining modern and readable code." 
+			link="https://github.com/Ryujinx/Ryujinx"
+			image_path="./ryujinx.png"
+			flipped={true} />
 	</main>
 </Layout>
+
+<style>
+	.bounce {
+		animation: bounce 2s infinite;
+	}
+
+	@keyframes bounce {
+		0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+		40% {transform: translateY(-2vh);}
+		60% {transform: translateY(-1.4vh);}
+	}
+</style>
