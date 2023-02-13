@@ -11,10 +11,10 @@ const { name, description, link, image_path, flipped } = Astro.props;
 ---
 
 <div class="relative overflow-clip h-screen flex snap-center">
-    <div class={`absolute max-w-6xl max-h-6xl ${flipped ? "right" : "left"}-35vw`}>
+    <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"}`}>
         <img class="object-scale-down animate hover" src={image_path}>
     </div>
-    <div class={`flex flex-row${flipped ? "-reverse" : ""} grow self-end drop-shadow-md`}>
+    <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end drop-shadow-md`}>
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-20">
             <div class="flex flex-col bg-stone-900 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-800 to-stone-900 hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
                 <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
