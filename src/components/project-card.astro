@@ -10,7 +10,7 @@ interface Props {
 const { name, description, link, image_path, flipped } = Astro.props;
 ---
 
-<div class="overflow-clip h-screen flex snap-center invisible sm:visible absolute sm:relative">
+<div class="overflow-clip h-screen flex sm:snap-center invisible sm:visible absolute sm:relative">
     <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"} translate-y-[8vh]`}>
         <img class="object-scale-down animate hover" src={image_path}>
     </div>
