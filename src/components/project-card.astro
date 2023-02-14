@@ -12,7 +12,7 @@ const { name, description, link, image_path, flipped } = Astro.props;
 
 <div class="overflow-clip h-screen flex sm:snap-center invisible sm:visible absolute sm:relative">
     <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"} translate-y-[8vh]`}>
-        <img class="object-scale-down animate hover" src={image_path}>
+        <img class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image_path}>
     </div>
     <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end drop-shadow-md`}>
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-20">
@@ -27,7 +27,7 @@ const { name, description, link, image_path, flipped } = Astro.props;
 
 <div class="flex flex-col justify-center h-screen visible sm:invisible relative sm:absolute">
     <div class="max-w-4xl max-h-4xl">
-        <img class="object-scale-down animate hover" src={image_path}>
+        <img class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image_path}>
     </div>
     <div class="flex drop-shadow-md">
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-10">
