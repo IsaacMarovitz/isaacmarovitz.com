@@ -10,8 +10,8 @@ interface Props {
 const { name, description, link, image_path, flipped } = Astro.props;
 ---
 
-<div class="relative overflow-clip h-screen flex snap-center">
-    <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"}`}>
+<div class="overflow-clip h-screen flex snap-center invisible sm:visible absolute sm:relative">
+    <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"} translate-y-[8vh]`}>
         <img class="object-scale-down animate hover" src={image_path}>
     </div>
     <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end drop-shadow-md`}>
@@ -25,13 +25,27 @@ const { name, description, link, image_path, flipped } = Astro.props;
     </div>
 </div>
 
+<div class="flex flex-col justify-center h-screen visible sm:invisible relative sm:absolute">
+    <div class="max-w-4xl max-h-4xl">
+        <img class="object-scale-down animate hover" src={image_path}>
+    </div>
+    <div class="flex drop-shadow-md">
+        <a href={link} target="_blank" rel="noreferrer noopener" class="m-10">
+            <div class="flex flex-col bg-stone-900 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-800 to-stone-900 hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
+                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
+                <p>{description}</p>
+            </div>
+        </a>
+    </div>
+</div>
+
 <style>
     .hover {
         animation: hover 5s infinite ease-in-out;
     }
 
     @keyframes hover {
-        0%, 100% {transform: translateY(8vh);}
-        50% {transform: translateY(10vh);}
+        0%, 100% {transform: translateY(0vh);}
+        50% {transform: translateY(2vh);}
     }
 </style>
