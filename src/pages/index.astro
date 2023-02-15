@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/project-card.astro';
 import About from '../components/about.astro';
+import Footer from '../components/footer.astro';
 import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
 ---
 
@@ -52,6 +53,7 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
 			link="https://github.com/Ryujinx/Ryujinx"
 			image_path="./ryujinx.webp"
 			flipped={true} />
+		<Footer />
 		<div class="h-screen hidden sm:block" />
 	</main>
 </Layout>
