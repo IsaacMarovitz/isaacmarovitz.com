@@ -10,10 +10,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/partytown": "^1.0.3",
-		"@astrojs/vue": "^2.0.1",
+		"@astrojs/partytown": "^1.2.3",
+		"@astrojs/vue": "^2.2.1",
 		"@heroicons/vue": "^2.0.15",
-		"astro": "^2.0.10",
+		"astro": "^2.5.7",
 		"vue": "^3.2.47"
 	},
 	"devDependencies": {
