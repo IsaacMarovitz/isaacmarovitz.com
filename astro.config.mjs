@@ -9,7 +9,9 @@ import partytown from "@astrojs/partytown";
 export default defineConfig({
   integrations: [
     vue(), 
-    UnoCSS(), 
+    UnoCSS({
+      injectReset: true
+    }), 
     partytown({
       config: {
         forward: ["dataLayer.push"],
