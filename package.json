@@ -13,7 +13,7 @@
 		"@astrojs/partytown": "^1.2.3",
 		"@astrojs/vue": "^2.2.1",
 		"@heroicons/vue": "^2.0.18",
-		"astro": "^2.7.3",
+		"astro": "^2.9.6",
 		"vue": "^3.3.4"
 	},
 	"devDependencies": {
