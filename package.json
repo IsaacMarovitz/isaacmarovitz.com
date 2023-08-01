@@ -18,6 +18,6 @@
 	},
 	"devDependencies": {
 		"@unocss/reset": "^0.53.4",
-		"unocss": "^0.53.4"
+		"unocss": "^0.54.1"
 	}
 }
