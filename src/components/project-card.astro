@@ -14,10 +14,10 @@ const { name, description, link, image_path, flipped } = Astro.props;
     <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-35vw" : "left-35vw"} translate-y-[8vh]`}>
         <img class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image_path}>
     </div>
-    <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end drop-shadow-md`}>
+    <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end`}>
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-20">
-            <div class="flex flex-col bg-stone-900 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-800 to-stone-900 hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
-                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
+            <div class="flex flex-col backdrop-blur-md bg-stone-900/60 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-200/10 to-transparent hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 gap-1 drop-shadow-md">
+                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-rose-600 font-bold text-4xl text-left">{name}</h2>
                 <p>{description}</p>
             </div>
         </a>
@@ -29,10 +29,10 @@ const { name, description, link, image_path, flipped } = Astro.props;
     <div class="max-w-4xl max-h-4xl">
         <img class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image_path}>
     </div>
-    <div class="flex drop-shadow-md">
+    <div class="flex">
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-10">
-            <div class="flex flex-col bg-stone-900 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-800 to-stone-900 hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
-                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-2xl text-left">{name}</h2>
+            <div class="flex flex-col backdrop-blur-md bg-stone-800/60 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-200/10 to-transparent hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
+                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-rose-600 font-bold text-3xl text-left">{name}</h2>
                 <p class="text-sm">{description}</p>
             </div>
         </a>
