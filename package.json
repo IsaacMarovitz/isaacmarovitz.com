@@ -13,11 +13,11 @@
 		"@astrojs/partytown": "^1.2.3",
 		"@astrojs/vue": "^2.2.1",
 		"@heroicons/vue": "^2.0.18",
-		"astro": "^2.10.7",
+		"astro": "^2.10.14",
 		"vue": "^3.3.4"
 	},
 	"devDependencies": {
-		"@unocss/reset": "^0.55.0",
-		"unocss": "^0.55.0"
+		"@unocss/reset": "^0.55.3",
+		"unocss": "^0.55.3"
 	}
 }
