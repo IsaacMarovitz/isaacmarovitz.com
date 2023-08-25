@@ -6,4 +6,5 @@ updates:
       interval: "weekly"
     groups:
       deps:
-        patterns: "*"
+        patterns: 
+          - "*"
