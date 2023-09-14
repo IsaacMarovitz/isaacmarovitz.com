@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/partytown": "^1.2.3",
+    "@astrojs/partytown": "^2.0.0",
     "@astrojs/vue": "^2.2.1",
     "@heroicons/vue": "^2.0.18",
-    "astro": "^2.10.14",
+    "astro": "^3.0.8",
     "bun-types": "^1.0.1",
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@unocss/reset": "^0.55.3",
-    "unocss": "^0.55.3"
+    "@unocss/reset": "^0.55.7",
+    "unocss": "^0.55.7"
   }
 }
