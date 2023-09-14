@@ -1,23 +1,24 @@
 {
-	"name": "isaacmarovitz-github-io",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/partytown": "^1.2.3",
-		"@astrojs/vue": "^2.2.1",
-		"@heroicons/vue": "^2.0.18",
-		"astro": "^2.10.14",
-		"vue": "^3.3.4"
-	},
-	"devDependencies": {
-		"@unocss/reset": "^0.55.3",
-		"unocss": "^0.55.3"
-	}
+  "name": "isaacmarovitz-github-io",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/partytown": "^1.2.3",
+    "@astrojs/vue": "^2.2.1",
+    "@heroicons/vue": "^2.0.18",
+    "astro": "^2.10.14",
+    "bun-types": "^1.0.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^0.55.3",
+    "unocss": "^0.55.3"
+  }
 }
