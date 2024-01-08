@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@astrojs/partytown": "^2.0.1",
-    "@astrojs/vue": "^3.0.2",
+    "@astrojs/vue": "^4.0.8",
     "@heroicons/vue": "^2.0.18",
-    "astro": "^3.4.0",
+    "astro": "^4.1.1",
     "bun-types": "^1.0.7",
     "vue": "^3.3.7"
   },
   "devDependencies": {
-    "@unocss/reset": "^0.57.1",
-    "unocss": "^0.57.1"
+    "@unocss/reset": "^0.58.3",
+    "unocss": "^0.58.3"
   }
 }
