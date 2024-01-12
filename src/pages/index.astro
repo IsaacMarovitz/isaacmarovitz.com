@@ -3,76 +3,129 @@ import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/project-card.astro';
 import About from '../components/about.astro';
 import Footer from '../components/footer.astro';
-import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
+import { ChevronDoubleDownIcon } from '@heroicons/vue/24/outline';
 ---
 
-<Layout title="Isaac Marovitz">
-	<main>
-		<div class="h-screen hidden sm:block" />
-		<div class="h-screen flex flex-col items-center justify-center px-10 sm:snap-center">
-			<div class="flex w-[100%] flex-row items-center justify-start py-20">
-				<div class="flex flex-col gap-3 sm:gap-5 lg:gap-10">
-					<div class="flex">
-						<div class="backdrop-blur-md bg-stone-900/60 text-white rounded-md sm:rounded-xl p-2 sm:p-5 drop-shadow-md">
-							<h1 class="text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl">Hi there, I'm</h1>
-						</div>
-					</div>
-					<div class="flex">
-						<div class="backdrop-blur-md bg-stone-900/60 rounded-md sm:rounded-xl p-2 sm:p-5 drop-shadow-md">
-							<h1 class="text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500">Isaac.</h1>
-						</div>
-					</div>
-					<div class="flex">
-						<div class="backdrop-blur-md bg-stone-900/60 rounded-full px-2 flex gap-2 drop-shadow-md transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-200/10 to-transparent hover:drop-shadow-xl hover:scale-105">
-							<a href="https://github.com/IsaacMarovitz" aria-label="Go to my GitHub Account" target="_blank" rel="noreferrer noopener" class="fa-brands fa-github text-white text-6 sm:text-8 lg:text-12 p-2" />
-							<a href="https://twitter.com/isaacmarovitz" aria-label="Go to my Twitter Account" target="_blank" rel="noreferrer noopener" class="fa-brands fa-twitter text-white text-6 sm:text-8 lg:text-12 p-2" />
-							<a href="https://social.treehouse.systems/@isaacmarovitz" aria-label="Go to my Mastodon Account" target="_blank" rel="noreferrer noopener" class="fa-brands fa-mastodon text-white text-6 sm:text-8 lg:text-12 p-2" />
-						</div>
-					</div>
-				</div>
-				<div class="grow"></div>
-				<img src="./profile.webp" alt="Profile picture" class="drop-shadow-md border-4 lg:border-8 rounded-full h-30 w-30 sm:h-50 sm:w-50 lg:h-70 lg:w-70"/>
-			</div>
-			<div class="flex w-[100%] justify-center">
-				<a href="#About" aria-label="Scroll down to about me">
-					<ChevronDoubleDownIcon class="h-10 w-10 sm:h-12 sm:w-12 lg:h-15 lg:w-15 text-white bounce" />
-				</a>
-			</div>
-		</div>
-		<div id="About" />
-		<About />
-		<div id="Projects" />
-		<ProjectCard
-			name="Whisky"
-			description="A modern Wine wrapper build with SwiftUI on top of Apple's Game Porting Toolkit. Whisky can run DirectX 12 games on Mac with minimal setup." 
-			link="https://github.com/IsaacMarovitz/Whisky"
-			image_path="./whisky.webp"
-			flipped={true} />
-		<ProjectCard
-			name="PlayCover"
-			description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control." 
-			link="https://github.com/PlayCover/PlayCover"
-			image_path="./playcover.webp"
-			flipped={false} />
-		<ProjectCard 
-			name="Ryujinx"
-			description="A modern Nintendo Switch emulator built from the ground up in C#. Ryujinx achieves impeccable compatibility while maintaining modern and readable code." 
-			link="https://github.com/Ryujinx/Ryujinx"
-			image_path="./ryujinx.webp"
-			flipped={true} />
-		<Footer />
-		<div class="h-screen hidden sm:block" />
-	</main>
+<Layout title='Isaac Marovitz'>
+  <main>
+    <div class='h-screen hidden sm:block'></div>
+    <div
+      class='h-screen flex flex-col items-center justify-center px-10 sm:snap-center'
+    >
+      <div class='flex w-[100%] flex-row items-center justify-start py-20'>
+        <div class='flex flex-col gap-3 sm:gap-5 lg:gap-10'>
+          <div class='flex'>
+            <div
+              class='backdrop-blur-md bg-stone-900/60 text-white rounded-md sm:rounded-xl p-2 sm:p-5 drop-shadow-md'
+            >
+              <h1
+                class='text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl'
+              >
+                Hi there, I'm
+              </h1>
+            </div>
+          </div>
+          <div class='flex'>
+            <div
+              class='backdrop-blur-md bg-stone-900/60 rounded-md sm:rounded-xl p-2 sm:p-5 drop-shadow-md'
+            >
+              <h1
+                class='text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500'
+              >
+                Isaac.
+              </h1>
+            </div>
+          </div>
+          <div class='flex'>
+            <div
+              class='backdrop-blur-md bg-stone-900/60 rounded-full px-2 flex gap-2 drop-shadow-md from-stone-200/10 to-transparent'
+            >
+              <a
+                href='https://github.com/IsaacMarovitz'
+                aria-label='Go to my GitHub Account'
+                target='_blank'
+                rel='noreferrer noopener'
+                class='fa-brands fa-github text-white text-6 sm:text-8 lg:text-12 p-2 hover:scale-105 transition duration-300 hover:ease-in-out hover:text-fuchsia-500'
+              ></a>
+              <a
+                href='https://twitter.com/isaacmarovitz'
+                aria-label='Go to my Twitter Account'
+                target='_blank'
+                rel='noreferrer noopener'
+                class='fa-brands fa-twitter text-white text-6 sm:text-8 lg:text-12 p-2 hover:scale-105 transition duration-300 hover:ease-in-out hover:text-fuchsia-500'
+              ></a>
+              <a
+                href='https://social.treehouse.systems/@isaacmarovitz'
+                aria-label='Go to my Mastodon Account'
+                target='_blank'
+                rel='noreferrer noopener'
+                class='fa-brands fa-mastodon text-white text-6 sm:text-8 lg:text-12 p-2 hover:scale-105 transition duration-300 hover:ease-in-out hover:text-fuchsia-500'
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class='grow'></div>
+        <img
+          src='./profile.webp'
+          alt='Profile picture'
+          class='drop-shadow-md border-4 lg:border-8 rounded-full h-30 w-30 sm:h-50 sm:w-50 lg:h-70 lg:w-70'
+        />
+      </div>
+      <div class='flex w-[100%] justify-center'>
+        <a href='#About' aria-label='Scroll down to about me'>
+          <ChevronDoubleDownIcon
+            class='h-10 w-10 sm:h-12 sm:w-12 lg:h-15 lg:w-15 text-white bounce hover:text-fuchsia-500 transition duration-300 hover:ease-in-out hover:drop-shadow-color-white hover:drop-shadow-2xl'
+          />
+        </a>
+      </div>
+    </div>
+    <div id='About'></div>
+    <About />
+    <div id='Projects'></div>
+    <ProjectCard
+      name='Whisky'
+      description="A modern Wine wrapper build with SwiftUI on top of Apple's Game Porting Toolkit. Whisky can run DirectX 12 games on Mac with minimal setup."
+      link='https://github.com/IsaacMarovitz/Whisky'
+      image_path='./whisky.webp'
+      flipped={true}
+    />
+    <ProjectCard
+      name='PlayCover'
+      description='A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control.'
+      link='https://github.com/PlayCover/PlayCover'
+      image_path='./playcover.webp'
+      flipped={false}
+    />
+    <ProjectCard
+      name='Ryujinx'
+      description='A modern Nintendo Switch emulator built from the ground up in C#. Ryujinx achieves impeccable compatibility while maintaining modern and readable code.'
+      link='https://github.com/Ryujinx/Ryujinx'
+      image_path='./ryujinx.webp'
+      flipped={true}
+    />
+    <Footer />
+    <div class='h-screen hidden sm:block'></div>
+  </main>
 </Layout>
 
 <style is:global>
-	.bounce {
-		animation: bounce 2s infinite;
-	}
+  .bounce {
+    animation: bounce 4s infinite;
+  }
 
-	@keyframes bounce {
-		0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-		40% {transform: translateY(-2vh);}
-		60% {transform: translateY(-1.4vh);}
-	}
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.25vh);
+    }
+    10% {
+      transform: translateY(-0.5vh);
+    }
+  }
 </style>
