@@ -1,4 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import profileRef from '../images/profile.webp';
+import whiskyRef from '../images/whisky.webp';
+import playcoverRef from '../images/playcover.webp';
+import ryujinxRef from '../images/ryujinx.webp';
+
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/project-card.astro";
 import About from "../components/about.astro";
@@ -53,8 +59,8 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
                     </div>
                 </div>
                 <div class="grow"></div>
-                <img
-                    src="./profile.webp"
+                <Image
+                    src={profileRef}
                     alt="Profile picture"
                     class="drop-shadow-md border-4 lg:border-8 rounded-full h-30 w-30 sm:h-50 sm:w-50 lg:h-70 lg:w-70"
                 />
@@ -74,21 +80,21 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
             name="Whisky"
             description="A modern Wine wrapper build with SwiftUI on top of Apple's Game Porting Toolkit. Whisky can run DirectX 12 games on Mac with minimal setup."
             link="https://github.com/IsaacMarovitz/Whisky"
-            image_path="./whisky.webp"
+            image={whiskyRef}
             flipped={true}
         />
         <ProjectCard
             name="PlayCover"
             description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control."
             link="https://github.com/PlayCover/PlayCover"
-            image_path="./playcover.webp"
+            image={playcoverRef}
             flipped={false}
         />
         <ProjectCard
             name="Ryujinx"
             description="A modern Nintendo Switch emulator built from the ground up in C#. Ryujinx achieves impeccable compatibility while maintaining modern and readable code."
             link="https://github.com/Ryujinx/Ryujinx"
-            image_path="./ryujinx.webp"
+            image={ryujinxRef}
             flipped={true}
         />
         <Footer />
