@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import Godot from '../images/godot.svg';
+
 function calculateAge(birthday: Date) {
     var today = new Date();
     var age = today.getFullYear() - birthday.getFullYear();
@@ -39,7 +42,7 @@ function calculateAge(birthday: Date) {
             </div>
             <div class="flex">
                 <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
-                    <i class="text-10 md:text-12 lg:text-14 fa-brands fa-unity"></i>
+                    <Image class="p-2" src={Godot} alt="Godot logo"/>
                 </div>
             </div>
         </div>
