@@ -1,21 +1,19 @@
 import { defineConfig } from 'astro/config';
-import UnoCSS from 'unocss/astro';
 import vue from "@astrojs/vue";
-
-// https://astro.build/config
 import partytown from "@astrojs/partytown";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     vue(), 
-    UnoCSS({
-      injectReset: true
-    }), 
     partytown({
       config: {
         forward: ["dataLayer.push"],
       },
     })
-  ]
+  ],
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });

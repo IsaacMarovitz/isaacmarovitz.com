@@ -1,16 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Godot from '../images/godot.svg';
-
-function calculateAge(birthday: Date) {
-    var today = new Date();
-    var age = today.getFullYear() - birthday.getFullYear();
-    var m = today.getMonth() - birthday.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
-        age--;
-    }
-    return age;
-}
 ---
 
 <div class="h-screen flex flex-col md:flex-row items-center justify-center md:justify-between px-10 sm:snap-center gap-5">
@@ -20,7 +10,7 @@ function calculateAge(birthday: Date) {
                 <h1 class="text-left font-bold lg:text-4xl md:text-4xl text-3xl text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 pb-0 lg:pb-1 md:pb-1">About</h1>
             </div>
             <p class="text-sm sm:text-base">
-                Hi there, I'm Isaac. I'm a {calculateAge(new Date(2006, 5, 16))} year old programmer from London.<br/><br/>
+                Hi there, I'm Isaac. I'm a <span id="age"></span> year old programmer from London.<br/><br/>
                 I started with web development and moved on to game development for 4 years.
                 Recently I've become involved in open-source app development, the specific projects you can see below.
                 In the future, I want to branch out into more low-level projects like OS development.
@@ -32,12 +22,12 @@ function calculateAge(birthday: Date) {
         <div class="flex flex-row text-white gap-5 md:gap-10">
             <div class="flex">
                 <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
-                    <i class="text-10 md:text-12 lg:text-14 fa-brands fa-rust"></i>
+                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-rust"></i>
                 </div>
             </div>
             <div class="flex">
                 <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
-                    <i class="text-10 md:text-12 lg:text-14 fa-brands fa-swift"></i>
+                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-swift"></i>
                 </div>
             </div>
             <div class="flex">
@@ -54,14 +44,31 @@ function calculateAge(birthday: Date) {
             </div>
             <div class="flex">
                 <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
-                    <i class="text-10 md:text-12 lg:text-14 fa-brands fa-python"></i>
+                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-python"></i>
                 </div>
             </div>
             <div class="flex">
                 <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
-                    <i class="text-10 md:text-12 lg:text-14 fa-brands fa-html5"></i>
+                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-html5"></i>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var birthday = new Date(2006, 5, 16);
+    var today = new Date();
+    var age = today.getFullYear() - birthday.getFullYear();
+    var m = today.getMonth() - birthday.getMonth();
+    
+    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+        age--;
+    }
+
+    var span = document.getElementById('age');
+
+    if (span != null) {
+        span.textContent = age.toString();
+    }
+</script>

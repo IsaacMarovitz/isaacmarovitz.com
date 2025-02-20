@@ -1,12 +1,14 @@
----
-function getYear() {
-    return new Date().getFullYear();
-}
----
-
 <div class="text-white text-center p-10 sm:snap-end">
     <p>
         <i class="fa-regular fa-copyright"></i>
-        - Isaac Marovitz {getYear()}
+        - Isaac Marovitz <span id="currentYear"></span>
     </p>
 </div>
+
+<script>
+    var span = document.getElementById('currentYear');
+    
+    if (span != null) {
+        span.textContent = new Date().getFullYear().toString();
+    }
+</script>
