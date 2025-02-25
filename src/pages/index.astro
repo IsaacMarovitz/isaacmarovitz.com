@@ -80,7 +80,7 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
             <ProjectCard
                 name="Whisky"
                 description="A modern Wine wrapper build with SwiftUI on top of Apple's Game Porting Toolkit. Whisky can run DirectX 12 games on Mac with minimal setup."
-                link="https://github.com/IsaacMarovitz/Whisky"
+                link="https://github.com/Whisky-App/Whisky"
                 image={whiskyRef}
                 flipped={true}
             />
@@ -114,78 +114,3 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
         50% { transform: translateY(-2dvh); }
     }
 </style>
-
-<script>
-    function enforceSnapBack() {
-        if (navigator.userAgent.indexOf("Firefox") != -1) {
-            const bufferStart = document.querySelector('.buffer-start') as HTMLElement;
-            const bufferEnd = document.querySelector('.buffer-end') as HTMLElement;
-            const centralContent = document.querySelector('.central-content') as HTMLElement;
-
-            if (!bufferStart || !bufferEnd || !centralContent) {
-                console.error('Required elements not found!');
-                return;
-            }
-
-            let lastScrollTop = window.scrollY;
-            let isScrolling = false;
-
-            const snapToContent = (position: 'top' | 'bottom') => {
-                const snapPosition =
-                    position === 'top'
-                        ? centralContent.offsetTop
-                        : centralContent.offsetTop + centralContent.offsetHeight - window.innerHeight;
-
-                window.scrollTo({
-                    top: snapPosition,
-                    behavior: 'smooth',
-                });
-            };
-
-            const checkScroll = () => {
-                const bufferStartRect = bufferStart.getBoundingClientRect();
-                const bufferEndRect = bufferEnd.getBoundingClientRect();
-                const currentScrollTop = window.scrollY;
-
-                const scrollVelocity = Math.abs(currentScrollTop - lastScrollTop);
-                lastScrollTop = currentScrollTop;
-
-                if (bufferStartRect.top <= window.innerHeight && bufferStartRect.bottom >= 0) {
-                    if (scrollVelocity < 1) {
-                        snapToContent('top');
-                    } else if (!isScrolling) {
-                        isScrolling = true;
-                        requestAnimationFrame(() => {
-                            snapToContent('top');
-                            isScrolling = false;
-                        });
-                    }
-                }
-
-                if (bufferEndRect.top <= window.innerHeight && bufferEndRect.bottom >= 0) {
-                    if (scrollVelocity < 1) {
-                        snapToContent('bottom');
-                    } else if (!isScrolling) {
-                        isScrolling = true;
-                        requestAnimationFrame(() => {
-                            snapToContent('bottom');
-                            isScrolling = false;
-                        });
-                    }
-                }
-
-                if (scrollVelocity > 0) {
-                    requestAnimationFrame(checkScroll);
-                }
-            };
-
-            window.addEventListener('scroll', () => {
-                if (!isScrolling) {
-                    requestAnimationFrame(checkScroll);
-                }
-            });
-        }
-    }
-
-    enforceSnapBack();
-</script>

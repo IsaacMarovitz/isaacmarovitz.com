@@ -34,10 +34,10 @@ const { name, description, link, image, flipped } = Astro.props;
         <Image class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image}>
     </div>
     <div class="flex">
-        <a href={link} target="_blank" rel="noreferrer noopener" class="m-10">
+        <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-10">
             <div class="flex flex-col backdrop-blur-md bg-stone-800/60 transition duration-300 hover:ease-in-out hover:bg-gradient-to-br from-stone-200/10 to-transparent hover:drop-shadow-xl hover:scale-105 text-white rounded-xl p-10 drop-shadow-md">
                 <div class="flex">
-                    <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
+                    <h2 aria-label={name} class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
                 </div>
                 <p class="text-sm">{description}</p>
             </div>
