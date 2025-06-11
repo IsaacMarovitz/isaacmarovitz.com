@@ -9,7 +9,6 @@ import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/project-card.astro";
 import About from "../components/about.astro";
 import Footer from "../components/footer.astro";
-import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
 ---
 
 <Layout title="Isaac Marovitz">
@@ -68,9 +67,10 @@ import { ChevronDoubleDownIcon } from "@heroicons/vue/24/outline";
                 </div>
                 <div class="flex w-[100%] justify-center">
                     <a href="#About" aria-label="Scroll down to about me">
-                        <ChevronDoubleDownIcon
-                            class="h-10 w-10 sm:h-12 sm:w-12 lg:h-15 lg:w-15 text-white bounce hover:text-fuchsia-500 transition duration-300 hover:ease-in-out hover:drop-shadow-2xl"
-                        />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor"
+                             class="h-10 w-10 sm:h-12 sm:w-12 lg:h-15 lg:w-15 text-white bounce hover:text-fuchsia-500 transition duration-300 hover:ease-in-out hover:drop-shadow-2xl">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                        </svg>
                     </a>
                 </div>
             </div>
