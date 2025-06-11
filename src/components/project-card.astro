@@ -12,7 +12,7 @@ interface Props {
 const { name, description, link, image, flipped } = Astro.props;
 ---
 
-<div class="overflow-clip h-screen flex sm:snap-center invisible sm:visible absolute sm:relative">
+<div class="overflow-clip h-screen sm:snap-center hidden sm:flex absolute sm:relative">
     <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-[35vw]" : "left-[35vw]"} translate-y-[8vh]`}>
         <Image class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image}>
     </div>
@@ -32,7 +32,7 @@ const { name, description, link, image, flipped } = Astro.props;
   </div>
 </div>
 
-<div class="flex flex-col justify-center h-screen visible sm:invisible relative sm:absolute">
+<div class="flex sm:hidden flex-col justify-center h-screen relative sm:absolute">
     <div class="max-w-4xl max-h-4xl">
         <Image class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image}>
     </div>
