@@ -11,9 +11,9 @@
     },
     "dependencies": {
         "@astrojs/partytown": "2.1.4",
-        "@astrojs/vue": "5.1.0",
+        "@astrojs/vue": "5.1.1",
         "@tailwindcss/vite": "^4.1.8",
-        "astro": "5.9.0",
+        "astro": "5.13.6",
         "bun-types": "^1.2.15",
         "tailwindcss": "^4.1.8"
     }
