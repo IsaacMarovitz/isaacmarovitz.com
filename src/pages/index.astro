@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import profileRef from '../images/profile.webp';
+import marathonRef from '../images/marathon.webp';
 import whiskyRef from '../images/whisky.webp';
 import playcoverRef from '../images/playcover.webp';
 import ryujinxRef from '../images/ryujinx.webp';
@@ -76,17 +77,17 @@ import Footer from "../components/footer.astro";
         <About />
         <div id="Projects"></div>
         <ProjectCard
+            name="Marathon Recomp"
+            description="Static recompilation of Sonic the Hedgehog (2006) for Xbox 360 to Windows, Linux and macOS. Assisted in reverse engineering, decompilation, and patch development."
+            link="https://github.com/sonicnext-dev/MarathonRecomp"
+            image={marathonRef}
+            flipped={true}
+        />
+        <ProjectCard
             name="Whisky"
             description="A modern Wine wrapper build with SwiftUI on top of Apple's Game Porting Toolkit. Whisky can run DirectX 12 games on Mac with minimal setup."
             link="https://github.com/Whisky-App/Whisky"
             image={whiskyRef}
-            flipped={true}
-        />
-        <ProjectCard
-            name="PlayCover"
-            description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control."
-            link="https://github.com/PlayCover/PlayCover"
-            image={playcoverRef}
             flipped={false}
         />
         <ProjectCard
@@ -95,6 +96,13 @@ import Footer from "../components/footer.astro";
             link="https://github.com/Ryubing/Ryujinx"
             image={ryujinxRef}
             flipped={true}
+        />
+        <ProjectCard
+            name="PlayCover"
+            description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control."
+            link="https://github.com/PlayCover/PlayCover"
+            image={playcoverRef}
+            flipped={false}
         />
         <Footer />
     </main>
