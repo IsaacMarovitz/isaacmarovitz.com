@@ -11,10 +11,10 @@
     },
     "dependencies": {
         "@astrojs/partytown": "2.1.4",
-        "@astrojs/vue": "5.1.0",
-        "@tailwindcss/vite": "^4.1.8",
-        "astro": "5.9.0",
-        "bun-types": "^1.2.15",
-        "tailwindcss": "^4.1.8"
+        "@astrojs/vue": "5.1.1",
+        "@tailwindcss/vite": "^4.1.13",
+        "astro": "5.13.7",
+        "bun-types": "^1.2.22",
+        "tailwindcss": "^4.1.13"
     }
 }
