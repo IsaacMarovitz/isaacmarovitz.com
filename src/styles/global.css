@@ -43,3 +43,43 @@
         @apply to-fuchsia-500;
     }
 }
+
+@layer utilities {
+    .prose {
+        * {
+            margin-top: 0.1rem;
+            margin-bottom: 0.1rem;
+        }
+
+        p {
+            text-wrap: pretty;
+        }
+
+        p:has(img) {
+            @apply flex;
+            @apply flex-col;
+            @apply items-center;
+        }
+
+        tr, thead {
+            --tw-prose-td-borders: var(--color-neutral-400);
+            --tw-prose-th-borders: var(--color-white);
+        }
+
+        img + em {
+            @apply text-center;
+            @apply m-0;
+            @apply text-sm;
+            @apply items-baseline;
+            @apply gap-1;
+        }
+
+        code::before {
+            content: "";
+        }
+
+        code::after {
+            content: "";
+        }
+    }
+}
