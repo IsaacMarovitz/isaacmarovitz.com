@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@astrojs/partytown": "2.1.4",
+        "@astrojs/rss": "^4.0.12",
         "@astrojs/vue": "5.1.1",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.14",
