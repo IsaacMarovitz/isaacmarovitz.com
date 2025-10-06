@@ -15,22 +15,26 @@ var dateString = date.toLocaleDateString("en-GB", options);
 ---
 <Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false}>
     <meta charset="utf-8" />
-    <div class="flex flex-col min-h-screen">
+    <div class="flex flex-col min-h-screen text-white">
         <div class="max-[1400px]:px-5 grow">
-            <div class="flex flex-col items-start text-left pt-10">
+            <div class="flex flex-col items-start text-left pt-10 gap-3">
+                <a href="/blog" class="flex flex-row items-center gap-2 back backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <p>All Posts</p>
+                </a>
                 <div class="flex flex-col gap-2 ">
-                    <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl text-white">
+                    <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl">
                         {frontmatter.title}
                     </h1>
 
-                    <p class="text-white">{frontmatter.description}</p>
-                    <p class="text-white">Published {dateString}</p>
+                    <p>{frontmatter.description}</p>
+                    <p>Published {dateString}</p>
                 </div>
             </div>
             <div class="py-5">
-                <hr class="text-white"/>
+                <hr/>
             </div>
-            <div class="flex flex-col gap-5 backdrop-blur-md text-white">
+            <div class="flex flex-col gap-5 backdrop-blur-md">
                 <slot />
             </div>
         </div>
@@ -73,6 +77,10 @@ var dateString = date.toLocaleDateString("en-GB", options);
     }
 
     a {
-        text-decoration: underline;
+        @apply underline;
+    }
+
+    .back {
+        @apply no-underline;
     }
 </style>
