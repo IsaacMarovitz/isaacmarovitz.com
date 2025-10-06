@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/footer.astro";
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+
+const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+}
+---
+
+<Layout title="Isaac Marovitz - Blog" snapping={false}>
+    <main>
+        <div class="flex flex-col min-h-screen">
+            <div class="max-[1400px]:px-5 grow">
+                <div class="flex flex-col items-start text-left pt-10">
+                    <h1 class="text-white">Blog Posts</h1>
+                </div>
+                <div class="py-5">
+                    <hr class="text-white"/>
+                </div>
+                <ul class="flex flex-col gap-5 text-white items-start">
+                    { allPosts.map((post: any) => 
+                        <li>
+                            <a href={post.url}>
+                                <h2>{post.frontmatter.title}</h2>
+                                <p>{post.frontmatter.description}</p>
+                                <p class="date">{new Date(post.frontmatter.pubDate.toString())
+                                            .toLocaleDateString("en-GB", options)}</p>
+                            </a>
+                            
+                        </li>
+                    )}
+                </ul>
+            </div>
+            <Footer />
+        </div>
+    </main>
+</Layout>
+
+<style>
+    @reference "tailwindcss";
+    
+    li {
+        @apply backdrop-blur-md;
+        @apply bg-stone-900/60;
+        @apply rounded-md;
+        @apply sm:rounded-xl;
+        @apply p-2;
+        @apply sm:p-5;
+        @apply drop-shadow-md;
+        @apply gap-2;
+    }
+
+    li .date {
+        @apply text-white/60;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>

@@ -1,0 +1,15 @@
+---
+layout: ../../layouts/Post.astro
+title: "Hello World"
+pubDate: 2025-10-06
+description: "A new blog. I can't wait to share my bad opinions."
+tags: ["astro"]
+---
+
+Starting a blog may seem like the most boring and basic thing that everyone and their mum has done, but I wanted to build for myself a platform to post longer-form content that would otherwise not fit on a site like Bluesky, or would be out of place for my regular postings.
+
+Much of my online content recently has been purely about my work on [Marathon Recompiled](https://github.com/sonicnext-dev/MarathonRecomp), and while I'm having a lot of fun with that project there's still plenty else that goes on day-to-day that I otherwise don't really share for one reason or another. Whether it's political, or just a general rant about one project or another, regardless of if anyone ends up reading it, I want to be able to put it out into the world.
+
+Such is the justification for this blog. Maybe I'll never use it, or maybe I'll starting posting regularly, but it's at least an option now.
+
+See you 'round.

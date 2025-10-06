@@ -3,13 +3,14 @@ import "../styles/global.css";
 
 export interface Props {
 	title: string;
+	snapping: boolean;
 }
 
-const { title } = Astro.props;
+const { title, snapping } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="snap-container sm:scroll-smooth sm:snap-y sm:snap-mandatory">
+<html lang="en" class={snapping ? "snap-container sm:scroll-smooth sm:snap-y sm:snap-mandatory" : ""}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width initial-scale=1.0, viewport-fit=cover" />

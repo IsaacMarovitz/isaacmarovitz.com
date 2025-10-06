@@ -1,0 +1,78 @@
+---
+import Layout from "./Layout.astro";
+import Footer from "../components/footer.astro";
+const { frontmatter } = Astro.props;
+
+const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC"
+}
+
+var date = new Date(frontmatter.pubDate.toString());
+var dateString = date.toLocaleDateString("en-GB", options);
+---
+<Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false}>
+    <meta charset="utf-8" />
+    <div class="flex flex-col min-h-screen">
+        <div class="max-[1400px]:px-5 grow">
+            <div class="flex flex-col items-start text-left pt-10">
+                <div class="flex flex-col gap-2 ">
+                    <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl text-white">
+                        {frontmatter.title}
+                    </h1>
+
+                    <p class="text-white">{frontmatter.description}</p>
+                    <p class="text-white">Published {dateString}</p>
+                </div>
+            </div>
+            <div class="py-5">
+                <hr class="text-white"/>
+            </div>
+            <div class="flex flex-col gap-5 backdrop-blur-md text-white">
+                <slot />
+            </div>
+        </div>
+        <Footer />
+    </div>
+</Layout>
+
+<style is:global>
+    @reference "tailwindcss";
+
+    h1 {
+        @apply font-extrabold;
+        @apply text-2xl;
+        @apply sm:text-5xl;
+        @apply lg:text-5xl;
+    }
+
+    h2 {
+        @apply font-extrabold;
+        @apply text-xl;
+        @apply sm:text-3xl;
+        @apply lg:text-3xl;
+    }
+
+    h3 {
+        @apply font-extrabold;
+        @apply text-lg;
+        @apply sm:text-xl;
+        @apply lg:text-xl;
+    }
+
+    ol {
+        list-style-position: inside;
+        list-style-type: decimal;
+    }
+
+    ul {
+        list-style-position: inside;
+        list-style-type: circle;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+</style>
