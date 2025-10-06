@@ -75,7 +75,9 @@
         }
 
         img {
-            @apply max-w-lg
+            @apply max-w-lg;
+            @apply px-5;
+            @apply md:px-0;
         }
 
         code::before {
