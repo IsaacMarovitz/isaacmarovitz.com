@@ -25,34 +25,34 @@ import Godot from '../images/godot.svg';
     <div class="flex flex-col gap-10 md:grow items-end">
         <div class="flex flex-row text-white gap-5 md:gap-10">
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-rust"></i>
                 </div>
             </div>
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-swift"></i>
                 </div>
             </div>
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <Image class="p-3 sm:p-0 lg:p-2 select-none" src={Godot} alt="Godot logo"/>
                 </div>
             </div>
         </div>
         <div class="flex flex-row text-white gap-5 md:gap-10">
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <p class="fa text-xl md:text-2xl lg:text-3xl select-none">C#</p>
                 </div>
             </div>
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-python"></i>
                 </div>
             </div>
             <div class="flex">
-                <div class="backdrop-blur-md bg-stone-900/60 w-20 h-20 lg:w-30 lg:h-30 flex items-center justify-center rounded-full p-2 sm:p-5 drop-shadow-md">
+                <div class="icon">
                     <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-html5"></i>
                 </div>
             </div>
@@ -76,3 +76,23 @@ import Godot from '../images/godot.svg';
         span.textContent = age.toString();
     }
 </script>
+
+<style>
+    @reference "tailwindcss";
+    
+    .icon {
+        @apply backdrop-blur-md;
+        @apply bg-stone-900/60;
+        @apply w-20;
+        @apply h-20;
+        @apply lg:w-30;
+        @apply lg:h-30;
+        @apply flex;
+        @apply items-center;
+        @apply justify-center;
+        @apply rounded-full;
+        @apply p-2;
+        @apply sm:p-5;
+        @apply drop-shadow-md;
+    }
+</style>
