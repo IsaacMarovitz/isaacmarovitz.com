@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/footer.astro";
+import Perspective from "../components/perspective.astro";
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 
 const options: Intl.DateTimeFormatOptions = {
@@ -24,12 +25,15 @@ const options: Intl.DateTimeFormatOptions = {
                     { allPosts.map((post: any) => 
                         <li>
                             <a href={post.url}>
-                                <h2>{post.frontmatter.title}</h2>
-                                <p>{post.frontmatter.description}</p>
-                                <p class="date">{new Date(post.frontmatter.pubDate.toString())
-                                            .toLocaleDateString("en-GB", options)}</p>
+                                <Perspective>
+                                    <div class="transform-3d">
+                                        <h2 class="accent to-30%">{post.frontmatter.title}</h2>
+                                        <p>{post.frontmatter.description}</p>
+                                        <p class="date">{new Date(post.frontmatter.pubDate.toString())
+                                                    .toLocaleDateString("en-GB", options)}</p>
+                                    </div>
+                                </Perspective>
                             </a>
-                            
                         </li>
                     )}
                 </ul>
@@ -54,17 +58,6 @@ const options: Intl.DateTimeFormatOptions = {
         @apply text-xl;
         @apply sm:text-3xl;
         @apply lg:text-3xl;
-    }
-
-    li {
-        @apply backdrop-blur-md;
-        @apply bg-stone-900/60;
-        @apply rounded-md;
-        @apply sm:rounded-xl;
-        @apply p-2;
-        @apply sm:p-5;
-        @apply drop-shadow-md;
-        @apply gap-2;
     }
 
     li .date {

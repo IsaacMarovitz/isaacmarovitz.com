@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Perspective from './perspective.astro';
 
 interface Props {
     name: string;
@@ -18,18 +19,15 @@ const { name, description, link, image, flipped } = Astro.props;
     </div>
     <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end`}>
         <a href={link} target="_blank" rel="noreferrer noopener" class="m-20">
-        <div class="perspective-card relative transform-3d">
-            <div class="perspective-base overflow-hidden backdrop-blur-md bg-stone-900/60 text-white rounded-xl p-10 gap-1 drop-shadow-xl">
-            <div class="transform-3d flex flex-col gap-1 relative">
-                <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 to-30% font-bold text-4xl text-left">{name}</h2>
-                <p>{description}</p>
-            </div>
-        </div>
-        <div class="perspective-overlay absolute inset-0 bg-gradient-to-br from-stone-200/10 to-transparent rounded-xl opacity-0 pointer-events-none transition-opacity duration-300"></div>
-      </div>
-    </a>
-    <div class="w-[100%]" />
-  </div>
+            <Perspective>
+                <div class="transform-3d flex flex-col gap-1 relative">
+                    <h2 class="accent to-30% font-bold text-4xl text-left">{name}</h2>
+                    <p>{description}</p>
+                </div>
+            </Perspective>
+        </a>
+        <div class="w-[100%]" />
+    </div>
 </div>
 
 <div class="flex sm:hidden flex-col justify-center h-screen relative sm:absolute">
@@ -38,130 +36,15 @@ const { name, description, link, image, flipped } = Astro.props;
     </div>
     <div class="flex">
         <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-10 perspective-card relative transform-3d">
-            <div class="perspective-base overflow-hidden backdrop-blur-md bg-stone-900/60 text-white rounded-xl p-10 gap-1 drop-shadow-xl">
+            <Perspective>
                 <div class="transform-3d flex">
-                    <h2 aria-label={name} class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500 font-bold text-3xl text-left">{name}</h2>
+                    <h2 aria-label={name} class="accent font-bold text-3xl text-left">{name}</h2>
                 </div>
                 <p class="text-sm">{description}</p>
-            </div>
-            <div class="perspective-overlay absolute inset-0 bg-gradient-to-br from-stone-200/10 to-transparent rounded-xl opacity-0 pointer-events-none transition-opacity duration-300"></div>
+            </Perspective>
         </a>
     </div>
 </div>
-
-<script>
-    // Referenced from https://github.com/nashvail/ATVIcons
-
-    class PerspectiveCard {
-        element: HTMLElement;
-        perspectiveAmount: number;
-        maxRotation: number;
-        maxTranslation: number;
-
-        constructor(element: HTMLElement) {
-            this.element = element;
-            this.perspectiveAmount = 1000;
-            this.maxRotation = 6;
-            this.maxTranslation = 3;
-            
-            this.setupEventListeners();
-        }
-        
-        setupEventListeners(): void {
-            this.element.addEventListener('mouseenter', () => this.handleMouseEnter());
-            this.element.addEventListener('mousemove', (e: MouseEvent) => this.handleMouseMove(e));
-            this.element.addEventListener('mouseleave', () => this.handleMouseLeave());
-        }
-        
-        handleMouseEnter(): void {
-            const overlay = this.element.querySelector('.perspective-overlay') as HTMLElement;
-            if (overlay) {
-                overlay.style.opacity = '1';
-            }
-            
-            const base = this.element.querySelector('.perspective-base') as HTMLElement;
-            if (base) {
-                base.style.transform = 'scale(1.02)';
-                base.style.transition = 'transform 0.2s ease-out';
-            }
-        }
-        
-        handleMouseMove(e: MouseEvent): void {
-            const rect = this.element.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            
-            const xRotationPercentage = this.calculateRotationPercentage(mouseY, rect.height);
-            const yRotationPercentage = -this.calculateRotationPercentage(mouseX, rect.width);
-            
-            const xTranslationPercentage = this.calculateTranslationPercentage(mouseX, rect.width);
-            const yTranslationPercentage = this.calculateTranslationPercentage(mouseY, rect.height);
-            
-            const overlay = this.element.querySelector('.perspective-overlay') as HTMLElement;
-            this.applyTransform(overlay, {
-                xRotationPercentage,
-                yRotationPercentage,
-                xTranslationPercentage,
-                yTranslationPercentage
-            });
-
-            const base = this.element.querySelector('.perspective-base') as HTMLElement;
-           this.applyTransform(base, {
-                xRotationPercentage,
-                yRotationPercentage,
-                xTranslationPercentage,
-                yTranslationPercentage
-            });
-        }
-        
-        handleMouseLeave(): void {
-            const overlay = this.element.querySelector('.perspective-overlay') as HTMLElement;
-            if (overlay) {
-                overlay.style.opacity = '0';
-                overlay.style.transform = '';
-                overlay.style.transition = 'transform 0.4s ease-out';
-            }
-            
-            const base = this.element.querySelector('.perspective-base') as HTMLElement;
-            if (base) {
-                base.style.transform = '';
-                base.style.transition = 'transform 0.4s ease-out';
-            }
-        }
-        
-        calculateRotationPercentage(offset: number, dimension: number): number {
-            return ((-2 / dimension) * offset) + 1;
-        }
-        
-        calculateTranslationPercentage(offset: number, dimension: number): number {
-            return ((-2 / dimension) * offset) + 1;
-        }
-        
-        applyTransform(element: HTMLElement, config: {
-            xRotationPercentage: number;
-            yRotationPercentage: number;
-            xTranslationPercentage: number;
-            yTranslationPercentage: number;
-        }): void {
-            const { xRotationPercentage, yRotationPercentage, xTranslationPercentage, yTranslationPercentage } = config;
-            
-            const rotateX = xRotationPercentage * this.maxRotation;
-            const rotateY = yRotationPercentage * this.maxRotation;
-            const translateX = xTranslationPercentage * this.maxTranslation;
-            const translateY = yTranslationPercentage * this.maxTranslation;
-            
-            const transform = `perspective(${this.perspectiveAmount}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${translateX}px, ${translateY}px, 0px)`;
-            
-            element.style.transform = transform;
-            element.style.transition = '';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.perspective-card');
-        cards.forEach(card => new PerspectiveCard(card as HTMLElement));
-    });
-</script>
 
 <style>
     .hover {

@@ -34,4 +34,12 @@
     h1, h2 {
         font-family: "SF Pro Display";
     }
+
+    .accent {
+        @apply text-transparent;
+        @apply bg-clip-text;
+        @apply bg-gradient-to-r;
+        @apply from-violet-500;
+        @apply to-fuchsia-500;
+    }
 }
