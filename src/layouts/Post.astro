@@ -34,53 +34,10 @@ var dateString = date.toLocaleDateString("en-GB", options);
             <div class="py-5">
                 <hr/>
             </div>
-            <div class="flex flex-col gap-5 backdrop-blur-md">
+            <div class="flex flex-col gap-5 prose prose-invert prose-stone">
                 <slot />
             </div>
         </div>
         <Footer />
     </div>
 </Layout>
-
-<style is:global>
-    @reference "tailwindcss";
-
-    h1 {
-        @apply font-extrabold;
-        @apply text-2xl;
-        @apply sm:text-5xl;
-        @apply lg:text-5xl;
-    }
-
-    h2 {
-        @apply font-extrabold;
-        @apply text-xl;
-        @apply sm:text-3xl;
-        @apply lg:text-3xl;
-    }
-
-    h3 {
-        @apply font-extrabold;
-        @apply text-lg;
-        @apply sm:text-xl;
-        @apply lg:text-xl;
-    }
-
-    ol {
-        list-style-position: inside;
-        list-style-type: decimal;
-    }
-
-    ul {
-        list-style-position: inside;
-        list-style-type: circle;
-    }
-
-    a {
-        @apply underline;
-    }
-
-    .back {
-        @apply no-underline;
-    }
-</style>
