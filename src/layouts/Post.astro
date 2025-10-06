@@ -34,8 +34,10 @@ var dateString = date.toLocaleDateString("en-GB", options);
             <div class="py-5">
                 <hr/>
             </div>
-            <div class="flex flex-col gap-5 prose prose-invert prose-stone">
-                <slot />
+            <div class="flex justify-center">
+                <div class="flex flex-col gap-5 prose prose-invert prose-stone max-w-4xl">
+                    <slot />
+                </div>
             </div>
         </div>
         <Footer />

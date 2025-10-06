@@ -74,6 +74,10 @@
             @apply gap-1;
         }
 
+        img {
+            @apply max-w-lg
+        }
+
         code::before {
             content: "";
         }
