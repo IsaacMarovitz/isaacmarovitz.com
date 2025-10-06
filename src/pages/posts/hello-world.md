@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
 title: "Hello World"
-pubDate: 2025-10-06
+pubDate: 2025-10-05
 description: "A new blog. I can't wait to share my bad opinions."
 tags: ["astro"]
 ---

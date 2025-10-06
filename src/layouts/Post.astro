@@ -15,31 +15,39 @@ var dateString = date.toLocaleDateString("en-GB", options);
 ---
 <Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false}>
     <meta charset="utf-8" />
-    <div class="flex flex-col min-h-screen text-white">
-        <div class="max-[1400px]:px-5 grow">
-            <div class="flex flex-col items-start text-left pt-10 gap-3">
-                <a href="/blog" class="flex flex-row items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <p>All Posts</p>
-                </a>
-                <div class="flex flex-col gap-2 ">
-                    <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl">
-                        {frontmatter.title}
-                    </h1>
+    <div class="flex justify-center">
+        <div class="flex flex-col min-h-screen min-w-0 max-w-4xl text-white">
+            <div class="max-[1400px]:px-5 grow">
+                <div class="flex flex-col items-start text-left pt-10 gap-3">
+                    <div class="flex flex-row justify-between w-full">
+                        <a href="/blog" class="flex flex-row items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            <p>All Posts</p>
+                        </a>
+                        <a href="/" class="flex flex-row items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
+                            <i class="fa-solid fa-home"></i>
+                            <p>Home</p>
+                        </a>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl">
+                            {frontmatter.title}
+                        </h1>
 
-                    <p>{frontmatter.description}</p>
-                    <p>Published {dateString}</p>
+                        <p>{frontmatter.description}</p>
+                        <p>Published {dateString}</p>
+                    </div>
+                </div>
+                <div class="py-5">
+                    <hr/>
+                </div>
+                <div class="flex justify-center">
+                    <div class="flex flex-col gap-5 prose prose-invert prose-stone min-w-0 max-w-4xl">
+                        <slot />
+                    </div>
                 </div>
             </div>
-            <div class="py-5">
-                <hr/>
-            </div>
-            <div class="flex justify-center">
-                <div class="flex flex-col gap-5 prose prose-invert prose-stone min-w-0 max-w-4xl">
-                    <slot />
-                </div>
-            </div>
+            <Footer />
         </div>
-        <Footer />
     </div>
 </Layout>
