@@ -6,18 +6,33 @@ description: "Most people know Sonic 06 has cut content, but few realise just ho
 tags: ["Sonic 06", "Lua", "Rendering"]
 ---
 
+import { Image } from "astro:assets";
+import csc from "../../images/sonic-06/csc.png";
+import castleTown from "../../images/sonic-06/castle-town.png";
+import betaCastleTown from "../../images/sonic-06/beta-castle-town.png";
+import billboard07 from "../../images/sonic-06/Billboard07.png";
+import shadowAcne from "../../images/sonic-06/shadow-acne.png";
+import lightsOverload from "../../images/sonic-06/lights-overload.png";
+import multiplayer from "../../images/sonic-06/multiplayer.png";
+
 During the process of building [Marathon Recompiled](https://github.com/sonicnext-dev/MarathonRecomp), we've ended up digging deep into many of Sonic 06's core systems, including the rendering. The appearance of 06's various areas varies from pretty good, like in Crisis City, to utterly flat and depressing in Castle Town.
 
-![Crisis City](../../../public/sonic-06/csc.png)
-*Crisis City has reflections, particle effects, dramatic lighting.*
+<div class="img-container">
+  <Image src={csc} priority alt="Crisis City" />
+  *Crisis City has reflections, particle effects, dramatic lighting.*
+</div>
 
-![Castle Town](../../../public/sonic-06/castle-town.png)
-*Castle Town just makes me sad.*
+<div class="img-container">
+  <Image src={castleTown} priority alt="Castle Town" />
+  *Castle Town just makes me sad.*
+</div>
 
 It really makes you wonder what exactly went wrong? If you look at what limited footage we have of beta content, we can see many effects that aren't present in the final game. Kingdom Valley had full bump maps, Castle Town had more complex geometry and plants, and New City's collision implies a very different building layout at some point in development.
 
-![Beta Castle Town](../../../public/sonic-06/beta-castle-town.png)
-*Beta Castle Town had proper lighting and shadows. [Source: TCRF](https://tcrf.net/Prerelease:Sonic_the_Hedgehog_(2006))*
+<div class="img-container">
+  <Image src={betaCastleTown} alt="Beta Castle Town" />
+  *Beta Castle Town had proper lighting and shadows. [Source: TCRF](https://tcrf.net/Prerelease:Sonic_the_Hedgehog_(2006))*
+</div>
 
 It turns out, much of the cut content is actually still in the game, but is simply not enabled for performance reasons in vanilla. Even with the cut-back visuals, the game struggles to reach target FPS on real hardware. It's not surprising that given the crunch Sonic Team were under to get the game out the door, these features were among the first to go.
 
@@ -42,8 +57,10 @@ If you're curious about how much each shader is used and where, I've made a [han
 
 Unfortunately, because of the different I/O layouts between the variants, swapping them out is not as easy as you'd hope. My current attempts to do so have been largely unsuccessful, mostly just resulting in the various techniques breaking in one way or another. Additionally, the textures used for each material are defined in an object's `.xno` file. It may be the case that some `.xno`s simply do not reference their other maps like normal and bump maps, despite them still being in the game files, and so swapping the shaders would not be enough.
 
-![Castle Town with Billboard07](../../../public/sonic-06/Billboard07.png)
-*Castle Town with Billboard07 shader. Shadows do not apply to buildings correctly.*
+<div class="img-container">
+  <Image src={billboard07} alt="Castle Town with Billboard07" />
+  *Castle Town with Billboard07 shader. Shadows do not apply to buildings correctly.*
+</div>
 
 # Shadow Maps
 
@@ -53,8 +70,10 @@ The level of cascades used is defined by `GenerateCSMLevels` and `GenerateCSMObj
 
 Even when shadows do render correctly, they're prone to severe shadow acne, a common artifact when using these sorts of techniques. This is usually resolved by adding a small epsilon value to shadow map samples, but Sonic Team didn't do this, and I don't have the knowledge of the shaders yet to attempt to add this.
 
-![Shadow Acne](../../../public/sonic-06/shadow-acne.png)
-*Shadow acne on Sonic's ear.*
+<div class="img-container">
+  <Image src={shadowAcne} alt="Shadow Acne" />
+  *Shadow acne on Sonic's ear.*
+</div>
 
 Shadows are also occasionally ill-defined in vanilla. Objects can set whether they contribute to shadow maps, and they sometimes get this wrong, leading to problems like Sonic's Crisis City snowboard having no shadow, and Elise's skirt missing a shadow in one of Sonic's story cutscenes. These are not as easily patchable, as it would likely require direct edits to the objects themselves, or a complicated hook to find and correct objects in the render code itself.
 
@@ -76,8 +95,10 @@ Sonic Team limited the number of point lights per-object to 2, that means at any
 
 Some stages like Kingdom Valley obey the limit pretty faithfully, and then stages like Flame Core and Dusty Desert utterly blow the limit out of the water, attempting to render 8+ lights per object. Needless to say, this doesn't work out. The renderer gets confused, and lights will "fight" for priority, causing some to appear or disappear semi-randomly.
 
-![Flame Core point lights](../../../public/sonic-06/lights-overload.png)
-*Overloaded point lights in Flame Core. Only lights on the left side of the path render.*
+<div class="img-container">
+  <Image src={lightsOverload} alt="Flame Core point lights" />
+  *Overloaded point lights in Flame Core. Only lights on the left side of the path render.*
+</div>
 
 Sonic Team attempted to provide a general optimisation for point lights, and allocate them effectively to nearby objects, but something in this check went wrong. I suspect a combination of the limit being sharply lowered later in development, and the switching of many per-pixel lit objects to per-vertex, which can vastly alter the contribution area of a point light. The result is point lights rarely work at all in vanilla, even in stages that respect the limit.
 
@@ -87,8 +108,10 @@ In the recomp, we are able to patch out most of the optimisation that breaks the
 
 Did you know Sonic 06 had real-time planar reflections? Hint: We saw them earlier in Crisis City. I actually don't have much to complain about here, generally they work really well and add a lot of realism to a scene. Of course, the resolution is severely limited in vanilla to 1/4 the resolution of the framebuffer, but that's easily patched. There is one area where the game's visuals get screwed over, and that's in multiplayer.
 
-![Kingdom Valley fixed cubemap](../../../public/sonic-06/multiplayer.png)
-*Murky fixed cubemap reflection in Kingdom Valley.*
+<div class="img-container">
+  <Image src={multiplayer} alt="Kingdom Valley fixed cubemap" />
+  *Murky fixed cubemap reflection in Kingdom Valley.*
+</div>
 
 To save having to render expensive planar reflections __twice__ in multiplayer, Sonic Team opted to just remove them entirely and replace them with static cubemaps. The problem is these cubemaps are pretty meh. Kingdom Valley goes from looking awesome to more like a depressed swamp. Well no problem, we can just patch it in right? Unfortunately due to how the rendering code works this isn't so easy.
 

@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/footer.astro";
 import Perspective from "../components/perspective.astro";
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }))
+const allPosts = Object.values(import.meta.glob('./posts/*.mdx', { eager: true }))
     .sort((a: any, b: any) => {
         return new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime();
     });

@@ -5,7 +5,7 @@ export async function GET(context) {
     title: "Isaac Marovitz - Blog",
     description: "Hi, I'm Isaac. I'm a developer from London. I code games, apps, and websites.",
     site: context.site,
-    items: await pagesGlobToRssItems(import.meta.glob('./**/*.md')),
+    items: await pagesGlobToRssItems(import.meta.glob('./**/*.mdx')),
     customData: `<language>en-gb</language>`,
   });
 }

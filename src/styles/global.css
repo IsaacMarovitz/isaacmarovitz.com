@@ -55,7 +55,7 @@
             text-wrap: pretty;
         }
 
-        p:has(img) {
+        .img-container {
             @apply flex;
             @apply flex-col;
             @apply items-center;
@@ -66,7 +66,7 @@
             --tw-prose-th-borders: var(--color-white);
         }
 
-        img + em {
+        .img-container em {
             @apply text-center;
             @apply m-0;
             @apply text-sm;
