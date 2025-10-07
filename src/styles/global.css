@@ -42,6 +42,40 @@
         @apply from-violet-500;
         @apply to-fuchsia-500;
     }
+
+    .zoomable-img {
+        @apply cursor-zoom-in;
+        @apply transition-transform;
+    }
+
+    .zoom-overlay {
+        @apply fixed;
+        @apply inset-0;
+        @apply flex;
+        @apply justify-center;
+        @apply items-center;
+        @apply opacity-0;
+        @apply pointer-events-none;
+        @apply z-50;
+        @apply transition-opacity;
+        @apply bg-black/80;
+    }
+
+    .zoom-overlay img {
+        @apply min-w-0;
+        @apply sm:min-w-lg;
+        @apply max-w-[90%];
+        @apply max-h-[90%];
+    }
+
+    .zoom-overlay.active {
+        @apply opacity-100;
+        @apply pointer-events-auto;
+    }
+
+    .zoom-overlay.active img {
+        @apply cursor-auto;
+    }
 }
 
 @layer utilities {

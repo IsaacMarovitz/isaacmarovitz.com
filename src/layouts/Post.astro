@@ -47,7 +47,51 @@ var dateString = date.toLocaleDateString("en-GB", options);
                     </div>
                 </div>
             </div>
+            <div class="zoom-overlay"><img alt="Zoom overlay"/></div>
             <Footer />
         </div>
     </div>
 </Layout>
+
+<script>
+    function isDesktop() {
+        return window.matchMedia("(pointer: fine)").matches;
+    }
+
+    function zoomImage(overlay: Element, img: HTMLImageElement) {
+        overlay.querySelector("img")!.src = img.currentSrc || img.src;
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function unzoomImage(overlay: Element) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    document.addEventListener("click", (e: Event) => {
+        if (!isDesktop()) {
+            return;
+        }
+
+        const overlay = document.querySelector(".zoom-overlay");
+        const img = (e.target as HTMLElement).closest(".zoomable-img");
+
+        if (img) {
+            zoomImage(overlay!, img as HTMLImageElement);
+            return;
+        }
+
+        if (overlay!.classList.contains("active")) {
+            unzoomImage(overlay!);
+        }
+    });
+
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+        const overlay = document.querySelector(".zoom-overlay");
+
+        if (e.key === "Escape" && overlay!.classList.contains("active")) {
+            unzoomImage(overlay!);
+        }
+    });
+</script>

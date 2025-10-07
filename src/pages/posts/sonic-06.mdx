@@ -18,19 +18,19 @@ import multiplayer from "../../images/sonic-06/multiplayer.png";
 During the process of building [Marathon Recompiled](https://github.com/sonicnext-dev/MarathonRecomp), we've ended up digging deep into many of Sonic 06's core systems, including the rendering. The appearance of 06's various areas varies from pretty good, like in Crisis City, to utterly flat and depressing in Castle Town.
 
 <div class="img-container">
-  <Image src={csc} priority alt="Crisis City" />
+  <Image src={csc} priority alt="Crisis City" class="zoomable-img" quality="high" />
   *Crisis City has reflections, particle effects, dramatic lighting.*
 </div>
 
 <div class="img-container">
-  <Image src={castleTown} priority alt="Castle Town" />
+  <Image src={castleTown} priority alt="Castle Town" class="zoomable-img" quality="high" />
   *Castle Town just makes me sad.*
 </div>
 
 It really makes you wonder what exactly went wrong? If you look at what limited footage we have of beta content, we can see many effects that aren't present in the final game. Kingdom Valley had full bump maps, Castle Town had more complex geometry and plants, and New City's collision implies a very different building layout at some point in development.
 
 <div class="img-container">
-  <Image src={betaCastleTown} alt="Beta Castle Town" />
+  <Image src={betaCastleTown} alt="Beta Castle Town" class="zoomable-img" quality="high" />
   *Beta Castle Town had proper lighting and shadows. [Source: TCRF](https://tcrf.net/Prerelease:Sonic_the_Hedgehog_(2006))*
 </div>
 
@@ -58,7 +58,7 @@ If you're curious about how much each shader is used and where, I've made a [han
 Unfortunately, because of the different I/O layouts between the variants, swapping them out is not as easy as you'd hope. My current attempts to do so have been largely unsuccessful, mostly just resulting in the various techniques breaking in one way or another. Additionally, the textures used for each material are defined in an object's `.xno` file. It may be the case that some `.xno`s simply do not reference their other maps like normal and bump maps, despite them still being in the game files, and so swapping the shaders would not be enough.
 
 <div class="img-container">
-  <Image src={billboard07} alt="Castle Town with Billboard07" />
+  <Image src={billboard07} alt="Castle Town with Billboard07" class="zoomable-img" quality="high" />
   *Castle Town with Billboard07 shader. Shadows do not apply to buildings correctly.*
 </div>
 
@@ -71,7 +71,7 @@ The level of cascades used is defined by `GenerateCSMLevels` and `GenerateCSMObj
 Even when shadows do render correctly, they're prone to severe shadow acne, a common artifact when using these sorts of techniques. This is usually resolved by adding a small epsilon value to shadow map samples, but Sonic Team didn't do this, and I don't have the knowledge of the shaders yet to attempt to add this.
 
 <div class="img-container">
-  <Image src={shadowAcne} alt="Shadow Acne" />
+  <Image src={shadowAcne} alt="Shadow Acne" class="zoomable-img" quality="high" />
   *Shadow acne on Sonic's ear.*
 </div>
 
@@ -96,7 +96,7 @@ Sonic Team limited the number of point lights per-object to 2, that means at any
 Some stages like Kingdom Valley obey the limit pretty faithfully, and then stages like Flame Core and Dusty Desert utterly blow the limit out of the water, attempting to render 8+ lights per object. Needless to say, this doesn't work out. The renderer gets confused, and lights will "fight" for priority, causing some to appear or disappear semi-randomly.
 
 <div class="img-container">
-  <Image src={lightsOverload} alt="Flame Core point lights" />
+  <Image src={lightsOverload} alt="Flame Core point lights" class="zoomable-img" quality="high" />
   *Overloaded point lights in Flame Core. Only lights on the left side of the path render.*
 </div>
 
@@ -109,7 +109,7 @@ In the recomp, we are able to patch out most of the optimisation that breaks the
 Did you know Sonic 06 had real-time planar reflections? Hint: We saw them earlier in Crisis City. I actually don't have much to complain about here, generally they work really well and add a lot of realism to a scene. Of course, the resolution is severely limited in vanilla to 1/4 the resolution of the framebuffer, but that's easily patched. There is one area where the game's visuals get screwed over, and that's in multiplayer.
 
 <div class="img-container">
-  <Image src={multiplayer} alt="Kingdom Valley fixed cubemap" />
+  <Image src={multiplayer} alt="Kingdom Valley fixed cubemap" class="zoomable-img" quality="high" />
   *Murky fixed cubemap reflection in Kingdom Valley.*
 </div>
 
