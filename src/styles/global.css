@@ -100,7 +100,7 @@
             --tw-prose-th-borders: var(--color-white);
         }
 
-        .img-container em {
+        .img-container p {
             @apply text-center;
             @apply m-0;
             @apply text-sm;
