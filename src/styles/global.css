@@ -109,10 +109,12 @@
         }
 
         img {
-            @apply max-w-screen;
-            @apply sm:max-w-lg;
+            @apply max-w-full;
+            @apply h-auto;
+            @apply max-h-96;
             @apply px-5;
             @apply md:px-0;
+            @apply object-scale-down
         }
 
         code::before {

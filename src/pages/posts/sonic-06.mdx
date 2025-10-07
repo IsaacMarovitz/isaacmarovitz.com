@@ -17,14 +17,15 @@ import multiplayer from "../../images/sonic-06/multiplayer.png";
 
 During the process of building [Marathon Recompiled](https://github.com/sonicnext-dev/MarathonRecomp), we've ended up digging deep into many of Sonic 06's core systems, including the rendering. The appearance of 06's various areas varies from pretty good, like in Crisis City, to utterly flat and depressing in Castle Town.
 
-<div class="img-container">
-  <Image src={csc} priority alt="Crisis City" class="zoomable-img" quality="high" />
-  *Crisis City has reflections, particle effects, dramatic lighting.*
-</div>
-
-<div class="img-container">
-  <Image src={castleTown} priority alt="Castle Town" class="zoomable-img" quality="high" />
-  *Castle Town just makes me sad.*
+<div class="flex justify-center overflow-clip flex-col md:flex-row">
+  <div class="img-container">
+    <Image src={csc} priority alt="Crisis City" class="zoomable-img" quality="high" />
+    *Crisis City has reflections, particle effects, dramatic lighting.*
+  </div>
+  <div class="img-container">
+    <Image src={castleTown} priority alt="Castle Town" class="zoomable-img" quality="high" />
+    *Castle Town just makes me sad.*
+  </div>
 </div>
 
 It really makes you wonder what exactly went wrong? If you look at what limited footage we have of beta content, we can see many effects that aren't present in the final game. Kingdom Valley had full bump maps, Castle Town had more complex geometry and plants, and New City's collision implies a very different building layout at some point in development.
