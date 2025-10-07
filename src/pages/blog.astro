@@ -18,7 +18,7 @@ const options: Intl.DateTimeFormatOptions = {
 <Layout title="Isaac Marovitz - Blog" snapping={false}>
     <main class="flex justify-center">
         <div class="flex flex-col min-h-screen min-w-0 max-w-4xl grow text-white">
-            <div class="max-[1400px]:px-5 grow">
+            <div class="flex flex-col max-[1400px]:px-5 grow">
                 <div class="flex flex-col items-start text-left pt-10 gap-3">
                     <a href="/" class="flex flex-row self-end items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
                         <i class="fa-solid fa-home"></i>
@@ -47,8 +47,9 @@ const options: Intl.DateTimeFormatOptions = {
                         </li>
                     )}
                 </ul>
+                <div class="grow" />
+                <Footer />
             </div>
-            <Footer />
         </div>
     </main>
 </Layout>
