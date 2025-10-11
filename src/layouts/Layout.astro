@@ -21,6 +21,9 @@ const { title, description, snapping } = Astro.props;
 		<link rel="alternate" type="application/rss+xml" title="Isaac Marovitz - Blog" href={new URL("rss.xml", Astro.site)}/>
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta property="og:locale" content="en_GB" />
+		<meta property="og:site_name" content="isaacmarovitz.com" />
+		<slot name="meta" />
 		<title>{title}</title>
 		<!-- Google tag (gtag.js) -->
 		<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-PT8W8Z8KDR"></script>

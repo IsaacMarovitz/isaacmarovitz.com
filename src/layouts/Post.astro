@@ -15,7 +15,18 @@ var dateString = date.toLocaleDateString("en-GB", options);
 ---
 
 <Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false} description={frontmatter.description}>
-    <meta charset="utf-8" />
+    <Fragment slot="meta">
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:type" content="article" />
+        <meta property="article:author" content="Isaac Marovitz" />
+        <meta property="article:published_time" content={date.toISOString()} />
+        {
+            frontmatter.tags.map((tag: string) => (
+                <meta property="article:tag" content={tag} />
+            ))
+        }
+    </Fragment>
     <div class="flex justify-center">
         <div class="flex flex-col min-h-screen min-w-0 max-w-4xl text-white">
             <div class="flex flex-col max-[1400px]:px-5 grow">
@@ -39,7 +50,7 @@ var dateString = date.toLocaleDateString("en-GB", options);
                         <p>Published {dateString}</p>
                         <div class="flex flex-row gap-2 items-center flex-wrap">
                         {
-                            frontmatter.tags.map((tag: String) => (
+                            frontmatter.tags.map((tag: string) => (
                                 <a href={"/tags/" + tag}>
                                     <div class="flex flex-row gap-2 backdrop-blur-md bg-stone-900/60 rounded-xl px-2 py-1 drop-shadow-sm">
                                         <p>{tag}</p>
