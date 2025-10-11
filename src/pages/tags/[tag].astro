@@ -20,7 +20,7 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={"Isaac Marovitz - " + tag} snapping={false}>
+<Layout title={"Isaac Marovitz - " + tag} snapping={false} description={"Blog posts with the tag \"" + tag + "\"."}>
     <main class="flex justify-center">
         <div class="flex flex-col min-h-screen min-w-0 max-w-4xl grow text-white">
             <div class="flex flex-col max-[1400px]:px-5 grow">

@@ -14,7 +14,7 @@ var date = new Date(frontmatter.pubDate.toString());
 var dateString = date.toLocaleDateString("en-GB", options);
 ---
 
-<Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false}>
+<Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false} description={frontmatter.description}>
     <meta charset="utf-8" />
     <div class="flex justify-center">
         <div class="flex flex-col min-h-screen min-w-0 max-w-4xl text-white">
