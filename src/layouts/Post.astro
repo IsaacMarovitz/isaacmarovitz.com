@@ -13,6 +13,7 @@ const options: Intl.DateTimeFormatOptions = {
 var date = new Date(frontmatter.pubDate.toString());
 var dateString = date.toLocaleDateString("en-GB", options);
 ---
+
 <Layout title={"Isaac Marovitz - " + frontmatter.title} snapping={false}>
     <meta charset="utf-8" />
     <div class="flex justify-center">
@@ -36,10 +37,21 @@ var dateString = date.toLocaleDateString("en-GB", options);
 
                         <p>{frontmatter.description}</p>
                         <p>Published {dateString}</p>
+                        <div class="flex flex-row gap-2 items-center flex-wrap">
+                        {
+                            frontmatter.tags.map((tag: String) => (
+                                <a href={"/tags/" + tag}>
+                                    <div class="flex flex-row gap-2 backdrop-blur-md bg-stone-900/60 rounded-xl px-2 py-1 drop-shadow-sm">
+                                        <p>{tag}</p>
+                                    </div>
+                                </a>
+                            ))
+                        }
+                        </div>
                     </div>
                 </div>
                 <div class="py-5">
-                    <hr/>
+                    <hr />
                 </div>
                 <div class="flex justify-center">
                     <div class="flex flex-col gap-5 prose prose-invert prose-stone min-w-0 max-w-4xl">

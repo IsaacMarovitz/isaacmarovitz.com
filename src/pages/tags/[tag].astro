@@ -1,15 +1,26 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Footer from "../components/footer.astro";
-import BlogPost from "../components/blog-post.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/footer.astro";
+import BlogPost from "../../components/blog-post.astro";
 
-const allPosts = Object.values(import.meta.glob('./posts/*.mdx', { eager: true }))
-    .sort((a: any, b: any) => {
-        return new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime();
+export async function getStaticPaths() {
+    const allPosts = Object.values(import.meta.glob('../posts/*.mdx', { eager: true }));
+    const uniqueTags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags.includes(tag));
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
     });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
 ---
 
-<Layout title="Isaac Marovitz - Blog" snapping={false}>
+<Layout title={"Isaac Marovitz - " + tag} snapping={false}>
     <main class="flex justify-center">
         <div class="flex flex-col min-h-screen min-w-0 max-w-4xl grow text-white">
             <div class="flex flex-col max-[1400px]:px-5 grow">
@@ -19,14 +30,14 @@ const allPosts = Object.values(import.meta.glob('./posts/*.mdx', { eager: true }
                         <p>Home</p>
                     </a>
                     <div class="flex flex-col gap-2">
-                        <h1 class="text-white">Blog Posts</h1>
+                        <h1 class="text-white">Blog Posts with "{tag}"</h1>
                     </div>  
                 </div>
                 <div class="py-5">
                     <hr class="text-white"/>
                 </div>
                 <ul class="flex flex-col gap-5 text-white items-start">
-                    { allPosts.map((post: any) => 
+                    { posts.map((post: any) => 
                         <li>
                             <BlogPost post={post} />
                         </li>

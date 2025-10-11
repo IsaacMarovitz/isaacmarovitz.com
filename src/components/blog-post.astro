@@ -1,0 +1,49 @@
+---
+import Perspective from "../components/perspective.astro";
+
+const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC"
+}
+
+interface Props {
+    post: any
+}
+
+const { post } = Astro.props;
+---
+
+<a href={post.url}>
+    <Perspective>
+        <div class="transform-3d">
+            <h2 class="accent to-30%">{post.frontmatter.title}</h2>
+            <p>{post.frontmatter.description}</p>
+            <p class="date">{new Date(post.frontmatter.pubDate.toString())
+                        .toLocaleDateString("en-GB", options)}</p>
+        </div>
+    </Perspective>
+</a>
+
+<style>
+    @reference "tailwindcss";
+    
+    h1 {
+        @apply font-extrabold;
+        @apply text-2xl;
+        @apply sm:text-5xl;
+        @apply lg:text-5xl;
+    }
+
+    h2 {
+        @apply font-extrabold;
+        @apply text-xl;
+        @apply sm:text-3xl;
+        @apply lg:text-3xl;
+    }
+
+    .date {
+        @apply text-white/60;
+    }
+</style>
