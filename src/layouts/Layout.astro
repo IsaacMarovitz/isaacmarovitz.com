@@ -21,6 +21,7 @@ const { title, description, snapping } = Astro.props;
 		<link rel="alternate" type="application/rss+xml" title="Isaac Marovitz - Blog" href={new URL("rss.xml", Astro.site)}/>
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta name="fediverse:creator" content="@isaacmarovitz@treehouse.systems" />
 		<meta property="og:locale" content="en_GB" />
 		<meta property="og:site_name" content="isaacmarovitz.com" />
 		<slot name="meta" />
