@@ -1,46 +1,31 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@font-face {
-    font-family: "SF Pro";
-    src: url('/fonts/SF Pro Text Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "SF Pro Display";
-    src: url('/fonts/SF Pro Display Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "SF Pro Display";
-    src: url('/fonts/SF Pro Display Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: block;
-}
-
 @theme {
-    --default-font-family: "SF Pro", "sans-serif";
-    --drop-shadow-2xl: 0 25px 15px rgb(255, 255, 255, 0.5);
+    --default-font-family: "Inter", "sans-serif";
+    --color-accent: rgba(255, 114, 81, 1);
+    --color-secondary: rgba(168, 180, 197, 1);
 }
 
 @layer components {
+    html {
+        @apply text-white;
+    }
+    
     h1, h2 {
-        font-family: "SF Pro Display";
+        font-family: "EB Garamond", serif;
     }
 
     .accent {
-        @apply text-transparent;
-        @apply bg-clip-text;
-        @apply bg-gradient-to-r;
-        @apply from-violet-500;
-        @apply to-fuchsia-500;
+        @apply text-accent;
+    }
+
+    .secondary {
+        @apply text-secondary;
+    }
+
+    div.accent {
+        @apply bg-accent;
     }
 
     .zoomable-img {

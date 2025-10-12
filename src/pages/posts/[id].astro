@@ -25,7 +25,7 @@ var dateString = post.data.pubDate.toLocaleDateString("en-GB", options);
 const ogImageUrl = new URL(Astro.url.pathname + "og.png", Astro.site).href;
 ---
 
-<Layout title=`Isaac Marovitz - ${post.data.title}` snapping={false} description={post.data.description}>
+<Layout title=`Isaac Marovitz - ${post.data.title}` description={post.data.description}>
     <Fragment slot="meta">
         <meta property="og:title" content={post.data.title} />
         <meta property="og:description" content={post.data.description} />
@@ -63,12 +63,12 @@ const ogImageUrl = new URL(Astro.url.pathname + "og.png", Astro.site).href;
                         </a>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl">
+                        <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl accent">
                             {post.data.title}
                         </h1>
 
                         <p>{post.data.description}</p>
-                        <p>Published {dateString}</p>
+                        <p class="secondary">Published {dateString}</p>
                         <div class="flex flex-row gap-2 items-center flex-wrap">
                         {
                             post.data.tags.map((tag: string) => (

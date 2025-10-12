@@ -5,14 +5,13 @@ import { ClientRouter } from "astro:transitions";
 export interface Props {
 	title: string;
 	description: string;
-	snapping: boolean;
 }
 
-const { title, description, snapping } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class={snapping ? "snap-container sm:scroll-smooth sm:snap-y sm:snap-mandatory" : ""}>
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width initial-scale=1.0, viewport-fit=cover" />
@@ -27,6 +26,9 @@ const { title, description, snapping } = Astro.props;
 		<meta property="og:site_name" content="isaacmarovitz.com" />
 		<slot name="meta" />
 		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<!-- Google tag (gtag.js) -->
 		<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-PT8W8Z8KDR"></script>
 		<script type="text/partytown">
@@ -43,44 +45,8 @@ const { title, description, snapping } = Astro.props;
 	<ClientRouter />
 </html>
 
-<script>
-	function updateGradient() {
-		const scrollPosition = window.scrollY;
-		const windowHeight = window.innerHeight;
-		const documentHeight = document.documentElement.scrollHeight;
-		const maxScroll = documentHeight - windowHeight;
-		const scrollProgress = maxScroll > 0 ? scrollPosition / maxScroll : 0;
-
-		const gradientTotalHeight = windowHeight * 1.5;
-		const viewportPositionInGradient = scrollProgress * (gradientTotalHeight - windowHeight);
-
-		const startStop = -(viewportPositionInGradient / windowHeight) * 100;
-		const endStop = startStop + (gradientTotalHeight / windowHeight) * 100;
-
-		const gradient = `linear-gradient(to bottom right in oklab, 
-			var(--color-violet-800) ${startStop}%, 
-			var(--color-fuchsia-800) ${endStop}%)`;
-
-		document.documentElement.style.background = gradient;
-		document.documentElement.style.backgroundAttachment = 'fixed';
+<style>
+	html {
+		background-color: rgba(20, 55, 90, 1);
 	}
-
-	let ticking = false;
-	function handleScroll() {
-		if (!ticking) {
-			window.requestAnimationFrame(() => {
-				updateGradient();
-				ticking = false;
-			});
-			ticking = true;
-		}
-	}
-
-	updateGradient();
-	window.addEventListener('scroll', handleScroll);
-	window.addEventListener('resize', updateGradient);
-
-	document.addEventListener("astro:page-load", () => {
-		updateGradient();
-	})
-</script>
+</style>
