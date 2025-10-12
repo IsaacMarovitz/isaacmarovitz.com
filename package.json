@@ -13,11 +13,13 @@
         "@astrojs/mdx": "^4.3.6",
         "@astrojs/partytown": "2.1.4",
         "@astrojs/rss": "^4.0.12",
-        "@astrojs/vue": "5.1.1",
+        "@resvg/resvg-js": "^2.6.2",
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.14",
         "astro": "5.14.1",
         "bun-types": "^1.2.23",
+        "satori": "^0.18.3",
+        "satori-html": "^0.3.2",
         "tailwindcss": "^4.1.14"
     }
 }
