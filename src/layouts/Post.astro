@@ -18,6 +18,7 @@ var dateString = date.toLocaleDateString("en-GB", options);
     <Fragment slot="meta">
         <meta property="og:title" content={frontmatter.title} />
         <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:url" content={"https://isaacmarovitz.com" + Astro.url.pathname} />
         <meta property="og:type" content="article" />
         <meta property="article:author" content="Isaac Marovitz" />
         <meta property="article:published_time" content={date.toISOString()} />
