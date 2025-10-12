@@ -66,7 +66,7 @@ const ogImageUrl = new URL(Astro.url.pathname + "og.png", Astro.site).href;
                             post.data.tags.map((tag: string, index: number) => (
                                 <a href={`/tags/${tag}`}>
                                     <div class="flex">
-                                        <p class="text-accent">{tag}</p>
+                                        <p class="text-accent hover:underline">{tag}</p>
                                         {index < post.data.tags.length - 1 && <p>,</p>}
                                     </div>
                                 </a>
