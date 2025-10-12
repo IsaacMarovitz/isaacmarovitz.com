@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/footer.astro";
 import { getCollection, render } from 'astro:content';
+import BlogNav from "../../components/blog-nav.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -49,32 +50,24 @@ const ogImageUrl = new URL(Astro.url.pathname + "og.png", Astro.site).href;
         <meta property="twitter:image" content={ogImageUrl} />
     </Fragment>
     <div class="flex justify-center">
-        <div class="flex flex-col min-h-screen min-w-0 max-w-4xl text-white">
+        <div class="flex flex-col min-h-screen min-w-0 max-w-4xl">
             <div class="flex flex-col max-[1400px]:px-5 grow">
                 <div class="flex flex-col items-start text-left pt-10 gap-3">
-                    <div class="flex flex-row justify-between w-full">
-                        <a href="/blog" class="flex flex-row items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
-                            <i class="fa-solid fa-chevron-left"></i>
-                            <p>All Posts</p>
-                        </a>
-                        <a href="/" class="flex flex-row items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
-                            <i class="fa-solid fa-home"></i>
-                            <p>Home</p>
-                        </a>
-                    </div>
+                    <BlogNav allPosts={true} />
                     <div class="flex flex-col gap-2">
-                        <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl accent">
+                        <h1 class="font-extrabold text-2xl sm:text-5xl lg:text-5xl">
                             {post.data.title}
                         </h1>
 
                         <p>{post.data.description}</p>
-                        <p class="secondary">Published {dateString}</p>
+                        <p class="text-secondary">Published {dateString}</p>
                         <div class="flex flex-row gap-2 items-center flex-wrap">
                         {
-                            post.data.tags.map((tag: string) => (
+                            post.data.tags.map((tag: string, index: number) => (
                                 <a href={`/tags/${tag}`}>
-                                    <div class="flex flex-row gap-2 backdrop-blur-md bg-stone-900/60 rounded-xl px-2 py-1 drop-shadow-sm">
-                                        <p>{tag}</p>
+                                    <div class="flex">
+                                        <p class="text-accent">{tag}</p>
+                                        {index < post.data.tags.length - 1 && <p>,</p>}
                                     </div>
                                 </a>
                             ))

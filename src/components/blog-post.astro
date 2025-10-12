@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import Perspective from "../components/perspective.astro";
 
 const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -17,14 +16,10 @@ const { post } = Astro.props;
 ---
 
 <a href={`/posts/${post.id}`}>
-    <Perspective>
-        <div class="transform-3d">
-            <h2 class="accent to-30%">{post.data.title}</h2>
-            <p>{post.data.description}</p>
-            <p class="secondary">{new Date(post.data.pubDate.toString())
-                        .toLocaleDateString("en-GB", options)}</p>
-        </div>
-    </Perspective>
+    <h2 class="hover:text-accent transition">{post.data.title}</h2>
+    <p>{post.data.description}</p>
+    <p class="text-secondary">{new Date(post.data.pubDate.toString())
+        .toLocaleDateString("en-GB", options)}</p>
 </a>
 
 <style>

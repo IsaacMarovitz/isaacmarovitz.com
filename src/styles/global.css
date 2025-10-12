@@ -16,18 +16,6 @@
         font-family: "EB Garamond", serif;
     }
 
-    .accent {
-        @apply text-accent;
-    }
-
-    .secondary {
-        @apply text-secondary;
-    }
-
-    div.accent {
-        @apply bg-accent;
-    }
-
     .zoomable-img {
         @apply cursor-zoom-in;
         @apply transition-transform;
@@ -61,6 +49,35 @@
     .zoom-overlay.active img {
         @apply cursor-auto;
     }
+
+    .dot-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 2px, transparent 0px);
+        background-size: 30px 30px;
+        opacity: var(--opacity, 0%);
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        mask-image: radial-gradient(
+            circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            black 0%,
+            transparent 100%
+        );
+        -webkit-mask-image: radial-gradient(
+            circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            black 0%,
+            transparent 100%
+        );
+    }
+
+    .dot-box > * {
+        position: relative;
+        z-index: 1;
+    }
 }
 
 @layer utilities {
@@ -68,6 +85,7 @@
         * {
             margin-top: 0.1rem;
             margin-bottom: 0.1rem;
+            --tw-prose-links: var(--color-accent);
         }
 
         p {

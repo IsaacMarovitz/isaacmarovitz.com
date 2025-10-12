@@ -21,7 +21,7 @@ const { name, description, link, image, flipped } = Astro.props;
         <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-20">
             <Perspective>
                 <div class="transform-3d flex flex-col gap-1 relative">
-                    <h2 aria-label={name} class="accent to-30% font-bold text-4xl text-left">{name}</h2>
+                    <h2 aria-label={name} class="text-accent to-30% font-bold text-4xl text-left">{name}</h2>
                     <p>{description}</p>
                 </div>
             </Perspective>
@@ -38,7 +38,7 @@ const { name, description, link, image, flipped } = Astro.props;
         <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-10">
             <Perspective>
                 <div class="transform-3d flex">
-                    <h2 aria-label={name} class="accent font-bold text-3xl text-left">{name}</h2>
+                    <h2 aria-label={name} class="text-accent font-bold text-3xl text-left">{name}</h2>
                 </div>
                 <p class="text-sm">{description}</p>
             </Perspective>

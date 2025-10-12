@@ -21,12 +21,12 @@ import Footer from "../components/footer.astro";
                         <h1 class="text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl">
                             Hi there, I'm
                         </h1>
-                        <h1 class="text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl accent">
+                        <h1 class="text-left font-extrabold text-2xl sm:text-5xl lg:text-8xl text-accent">
                             Isaac.
                         </h1>
                     </div>
                     <div class="flex">
-                        <div class="backdrop-blur-md bg-stone-900/60 rounded-full px-2 flex gap-2 drop-shadow-md from-stone-200/10 to-transparent">
+                        <div class="flex gap-2">
                             <a
                                 href="https://github.com/IsaacMarovitz"
                                 aria-label="Go to my GitHub Account"
@@ -106,35 +106,6 @@ import Footer from "../components/footer.astro";
 </Layout>
 
 <style is:global>
-    .dot-box::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 2px, transparent 0px);
-        background-size: 30px 30px;
-        opacity: var(--opacity, 0%);
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        mask-image: radial-gradient(
-            circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            black 0%,
-            transparent 100%
-        );
-        -webkit-mask-image: radial-gradient(
-            circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-            black 0%,
-            transparent 100%
-        );
-    }
-
-    .dot-box > * {
-        position: relative;
-        z-index: 1;
-    }
-    
     .bounce {
         animation: bounce 2s infinite;
     }
