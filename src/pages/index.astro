@@ -117,26 +117,28 @@ import Footer from "../components/footer.astro";
 </style>
 
 <script>
-    const boxes = document.querySelectorAll('.dot-box');
+    document.addEventListener("astro:page-load", () => {
+        const boxes = document.querySelectorAll('.dot-box');
     
-    boxes.forEach(box => {
-        let elem = box as HTMLElement;
+        boxes.forEach(box => {
+            let elem = box as HTMLElement;
 
-        elem.onmouseenter = () => {
-            elem.style.setProperty("--opacity", "40%");
-        };
+            elem.onmouseenter = () => {
+                elem.style.setProperty("--opacity", "40%");
+            };
 
-        elem.onmousemove = (event: MouseEvent) => {
-            const rect = elem.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 100;
-            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            elem.onmousemove = (event: MouseEvent) => {
+                const rect = elem.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                
+                elem.style.setProperty('--mouse-x', `${x}%`);
+                elem.style.setProperty('--mouse-y', `${y}%`);
+            };
             
-            elem.style.setProperty('--mouse-x', `${x}%`);
-            elem.style.setProperty('--mouse-y', `${y}%`);
-        };
-        
-        elem.onmouseleave = () => {
-            elem.style.setProperty("--opacity", "0%");
-        };
+            elem.onmouseleave = () => {
+                elem.style.setProperty("--opacity", "0%");
+            };
+        });
     });
 </script>
