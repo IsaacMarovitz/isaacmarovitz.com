@@ -4,6 +4,13 @@ import { getCollection, getEntry } from "astro:content";
 import satori from "satori";
 import { html } from "satori-html";
 
+const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC"
+}
+
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
     return posts.map((post) => ({
@@ -23,7 +30,7 @@ export async function GET({ params }: { params: { id: string } }) {
         readFile("./public/fonts/SF-Pro-Text-Regular.otf"),
     ]);
 
-    const { title, description } = post.data;
+    const { title, description, pubDate } = post.data;
 
     const markup= html(`
         <div style="
@@ -52,10 +59,21 @@ export async function GET({ params }: { params: { id: string } }) {
                 width: 1000px;">
                 ${description}
             </div>
+            <div style="
+                padding-top: 30px;
+                display: flex;
+                font-family: 'SF Pro';
+                width: 1000px;"
+                flex-direction: row;>
+                <div style="
+                    display: flex;>
+                    ${pubDate.toLocaleDateString("en-GB", options)}
+                </div>
+            </div>
         </div>
     `);
 
-    const svg = await satori(markup, {
+    const svg = await satori(markup as React.ReactNode, {
         width: 1200,
         height: 630,
         fonts: [
@@ -68,7 +86,7 @@ export async function GET({ params }: { params: { id: string } }) {
     const resvg = new Resvg(svg);
     const png = resvg.render().asPng();
 
-    return new Response(png.buffer, {
+    return new Response(png.buffer as BodyInit, {
         status: 200,
         headers: {
             "Content-Type": "image/png",
