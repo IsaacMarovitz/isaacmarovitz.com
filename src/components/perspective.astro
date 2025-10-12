@@ -113,7 +113,7 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("astro:page-load", () => {
         const cards = document.querySelectorAll('.perspective-card');
         cards.forEach(card => new PerspectiveCard(card as HTMLElement));
     });

@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
 	title: string;
@@ -39,6 +40,7 @@ const { title, description, snapping } = Astro.props;
 	<body class="max-w-[1300px]" style="margin: 0 auto; float: none;">
 		<slot />
 	</body>
+	<ClientRouter />
 </html>
 
 <script>
@@ -77,4 +79,8 @@ const { title, description, snapping } = Astro.props;
 	updateGradient();
 	window.addEventListener('scroll', handleScroll);
 	window.addEventListener('resize', updateGradient);
+
+	document.addEventListener("astro:page-load", () => {
+		updateGradient();
+	})
 </script>
