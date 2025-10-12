@@ -1,4 +1,5 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Perspective from "../components/perspective.astro";
 
 const options: Intl.DateTimeFormatOptions = {
@@ -9,18 +10,18 @@ const options: Intl.DateTimeFormatOptions = {
 }
 
 interface Props {
-    post: any
+    post: CollectionEntry<"posts">
 }
 
 const { post } = Astro.props;
 ---
 
-<a href={post.url}>
+<a href={`/posts/${post.id}`}>
     <Perspective>
         <div class="transform-3d">
-            <h2 class="accent to-30%">{post.frontmatter.title}</h2>
-            <p>{post.frontmatter.description}</p>
-            <p class="date">{new Date(post.frontmatter.pubDate.toString())
+            <h2 class="accent to-30%">{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <p class="date">{new Date(post.data.pubDate.toString())
                         .toLocaleDateString("en-GB", options)}</p>
         </div>
     </Perspective>
