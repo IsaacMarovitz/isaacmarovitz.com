@@ -3,13 +3,43 @@ import { Image } from 'astro:assets';
 import NotByAi from '../images/not-by-ai.svg';
 ---
 
-<div class="text-white text-center py-10 sm:snap-end flex flex-row flex-nowrap justify-between items-center">
-    <a href="https://notbyai.fyi">
-        <Image src={NotByAi} alt="Written by Human, Not by AI"/>
-    </a>
-    <p>
-        © <span id="currentYear"></span> Isaac Marovitz 
-    </p>
+<div class="flex justify-center">
+    <div class="text-white text-center py-10 sm:snap-end flex flex-row flex-nowrap justify-between items-center max-w-[1300px] w-[100%]">
+        <a href="https://notbyai.fyi" class="hidden sm:inline">
+            <Image src={NotByAi} alt="Written by Human, Not by AI"/>
+        </a>
+        <div class="flex flex-row gap-4 md:gap-5 lg:gap-6 items-center">
+            <a
+                href="https://github.com/IsaacMarovitz"
+                aria-label="Go to my GitHub Account"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="fa-brands fa-github text-lg sm:text-xl lg:text-2xl link"
+            ></a>
+            <a
+                href="https://bsky.app/profile/isaacmarovitz.com"
+                aria-label="Go to my Bluesky Account"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="fa-brands fa-bluesky text-lg sm:text-xl lg:text-2xl link"
+            ></a>
+            <a
+                href="https://social.treehouse.systems/@isaacmarovitz"
+                aria-label="Go to my Mastodon Account"
+                target="_blank"
+                rel="noreferrer noopener"
+                class="fa-brands fa-mastodon text-lg sm:text-xl lg:text-2xl link"
+            ></a>
+            <a
+                href="/blog"
+                aria-label="Go to my Blog"
+                class="fa fa-rss text-lg sm:text-xl lg:text-2xl link"
+            ></a>
+        </div>
+        <p>
+            © <span id="currentYear"></span> Isaac Marovitz 
+        </p>
+    </div>
 </div>
 
 <script>

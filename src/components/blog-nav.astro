@@ -6,7 +6,7 @@ interface Props {
 const { allPosts } = Astro.props;
 ---
 
-<div class="flex flex-row justify-between w-full">
+<div class="flex flex-row justify-between w-full text-secondary py-5">
     {
         allPosts &&
             <a href="/blog" class="flex flex-row items-center gap-2 back hover:scale-110 transition hover:text-accent">
