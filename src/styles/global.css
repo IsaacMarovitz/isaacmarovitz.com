@@ -1,46 +1,27 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@font-face {
-    font-family: "SF Pro";
-    src: url('/fonts/SF Pro Text Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "SF Pro Display";
-    src: url('/fonts/SF Pro Display Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
-    font-family: "SF Pro Display";
-    src: url('/fonts/SF Pro Display Bold.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-    font-display: block;
-}
-
 @theme {
-    --default-font-family: "SF Pro", "sans-serif";
-    --drop-shadow-2xl: 0 25px 15px rgb(255, 255, 255, 0.5);
+    --default-font-family: "Inter", "sans-serif";
+    --color-blue: rgba(20, 55, 90, 1);
+    --color-accent: rgba(255, 114, 81, 1);
+    --color-secondary: rgba(168, 180, 197, 1);
 }
 
 @layer components {
+    html {
+        @apply text-white;
+        @apply bg-blue;
+    }
+    
     h1, h2 {
-        font-family: "SF Pro Display";
+        font-family: "EB Garamond", serif;
     }
 
-    .accent {
-        @apply text-transparent;
-        @apply bg-clip-text;
-        @apply bg-gradient-to-r;
-        @apply from-violet-500;
-        @apply to-fuchsia-500;
+    .link {
+        @apply hover:scale-105;
+        @apply hover:text-accent;
+        @apply transition duration-300 hover:ease-in-out;
     }
 
     .zoomable-img {
@@ -76,6 +57,55 @@
     .zoom-overlay.active img {
         @apply cursor-auto;
     }
+
+    .dot-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 0.15vw, transparent 0px);
+        background-size: 2vw 2vw;
+        opacity: 40%;
+        pointer-events: none;
+        transition: --opacity 0.3s ease;
+        mask-image: radial-gradient(
+            circle 50vw at 20% 50%,
+            black 0%,
+            transparent 100%
+        );
+    }
+
+    .dot-box::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 0.15vw, transparent 0px);
+        background-size: 2vw 2vw;
+        opacity: var(--opacity, 0   );
+        pointer-events: none;
+        mask-image: radial-gradient(
+            circle 20vw at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            black 0%,
+            transparent 100%
+        ),
+        radial-gradient(
+            circle 50vw at 25% 50%,
+            black 0%,
+            transparent 100%
+        );
+        transition: opacity 0.3s ease;
+        mask-composite: subtract;
+    }
+
+    .dot-box > * {
+        position: relative;
+        z-index: 1;
+    }
 }
 
 @layer utilities {
@@ -83,6 +113,7 @@
         * {
             margin-top: 0.1rem;
             margin-bottom: 0.1rem;
+            --tw-prose-links: var(--color-accent);
         }
 
         p {

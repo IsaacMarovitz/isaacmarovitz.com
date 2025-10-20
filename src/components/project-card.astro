@@ -1,58 +1,37 @@
 ---
 import { Image } from 'astro:assets';
-import Perspective from './perspective.astro';
-
 interface Props {
-    name: string;
-    description: string;
-    link: string;
-    image: ImageMetadata;
-    flipped: boolean;
+  name: string;
+  description: string;
+  link: string;
+  image: ImageMetadata;
 }
-
-const { name, description, link, image, flipped } = Astro.props;
+const { name, description, link, image } = Astro.props;
 ---
-
-<div class="overflow-clip h-screen sm:snap-center hidden sm:flex absolute sm:relative">
-    <div class={`absolute max-w-4xl max-h-4xl ${flipped ? "right-[35vw]" : "left-[35vw]"} translate-y-[8vh]`}>
-        <Image class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image}>
-    </div>
-    <div class={`flex ${flipped ? "flex-row-reverse" : "flex-row"} grow self-end`}>
-        <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-20">
-            <Perspective>
-                <div class="transform-3d flex flex-col gap-1 relative">
-                    <h2 aria-label={name} class="accent to-30% font-bold text-4xl text-left">{name}</h2>
-                    <p>{description}</p>
-                </div>
-            </Perspective>
-        </a>
-        <div class="w-[100%]" />
-    </div>
-</div>
-
-<div class="flex sm:hidden flex-col justify-center h-screen relative sm:absolute">
-    <div class="max-w-4xl max-h-4xl">
-        <Image class="object-scale-down animate hover" alt={`Screenshot of ${name}`} src={image}>
-    </div>
-    <div class="flex">
-        <a href={link} aria-label={`GitHub of ${name}`} target="_blank" rel="noreferrer noopener" class="m-10">
-            <Perspective>
-                <div class="transform-3d flex">
-                    <h2 aria-label={name} class="accent font-bold text-3xl text-left">{name}</h2>
-                </div>
-                <p class="text-sm">{description}</p>
-            </Perspective>
-        </a>
-    </div>
-</div>
-
-<style>
-    .hover {
-        animation: hover 5s infinite ease-in-out;
-    }
-
-    @keyframes hover {
-        0%, 100% { transform: translateY(0vh); }
-        50% { transform: translateY(2vh); }
-    }
-</style>
+<a
+  href={link}
+  aria-label={`GitHub of ${name}`}
+  target="_blank"
+  rel="noreferrer noopener"
+  class="group relative flex flex-col h-full min-h-[400px] rounded-2xl overflow-hidden border border-secondary/20 hover:border-accent transition-all duration-300 hover:scale-[102%]"
+>
+  <div class="absolute inset-0">
+    <Image
+      class="w-full h-full object-cover object-left-top"
+      alt={`Screenshot of ${name}`}
+      src={image}
+    />
+  </div>
+  
+  <div class="absolute inset-0 bg-gradient-to-t from-blue via-blue/10 to-transparent"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-blue via-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></div>
+  
+  <div class="relative mt-auto p-6 z-10">
+    <h2 class="font-bold text-2xl sm:text-3xl text-white group-hover:text-accent mb-3 transition-colors duration-300">
+      {name}
+    </h2>
+    <p class="text-secondary text-sm sm:text-base max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300 ease-out">
+      {description}
+    </p>
+  </div>
+</a>

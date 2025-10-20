@@ -4,6 +4,7 @@ import Footer from "../components/footer.astro";
 import BlogPost from "../components/blog-post.astro";
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from "astro:content";
+import BlogNav from "../components/blog-nav.astro";
 
 
 const posts = (await getCollection("posts")).sort(
@@ -13,23 +14,20 @@ const posts = (await getCollection("posts")).sort(
 );
 ---
 
-<Layout title="Isaac Marovitz - Blog" snapping={false} description="Blog posts about various things.">
+<Layout title="Isaac Marovitz - Blog" description="Blog posts about various things.">
     <main class="flex justify-center">
-        <div class="flex flex-col min-h-screen min-w-0 max-w-4xl grow text-white">
+        <div class="flex flex-col min-h-screen min-w-0 max-w-4xl grow">
             <div class="flex flex-col max-[1400px]:px-5 grow">
-                <div class="flex flex-col items-start text-left pt-10 gap-3">
-                    <a href="/" class="flex flex-row self-end items-center gap-2 back hover:scale-110 transition-transform backdrop-blur-md bg-stone-900/60 rounded-xl p-2 drop-shadow-sm">
-                        <i class="fa-solid fa-home"></i>
-                        <p>Home</p>
-                    </a>
+                <div class="flex flex-col items-start text-left">
+                    <BlogNav allPosts={false} />
                     <div class="flex flex-col gap-2">
-                        <h1 class="text-white">Blog Posts</h1>
+                        <h1>Blog Posts</h1>
                     </div>  
                 </div>
-                <div class="py-5">
-                    <hr class="text-white"/>
+                <div class="py-5 text-secondary">
+                    <hr />
                 </div>
-                <ul class="flex flex-col gap-5 text-white items-start">
+                <ul class="flex flex-col gap-10 items-start">
                     { posts.map((post: any) => 
                         <li>
                             <BlogPost post={post} />

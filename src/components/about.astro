@@ -2,97 +2,68 @@
 import { Image } from 'astro:assets';
 import Godot from '../images/godot.svg';
 ---
-
-<div class="h-screen flex flex-col md:flex-row items-center justify-center md:justify-between px-10 sm:snap-center gap-5">
-    <div class="flex">
-        <div class="backdrop-blur-md bg-stone-900/60 rounded-md sm:rounded-xl p-10 drop-shadow-md text-white">
-            <div class="flex">
-                <h1 class="text-left font-bold lg:text-4xl md:text-4xl text-3xl accent pb-0 lg:pb-1 md:pb-1">About</h1>
-            </div>
-            <p class="text-sm sm:text-base">
-                Hi there, I'm Isaac. I'm a <span id="age"></span> year old programmer from London.<br/><br/>
-                Computer science has been my number one interest for over ten years.
-                I started with web development and moved on to game development for 4 years.
-                I then became involved in open-source app development.
-
-                <br><br>
-
-                I'm proficient in Swift, Rust, and C#, and have extensive experience with cross-platform computer graphics infrastructure, including Metal, Vulkan, and DirectX.
-            </p>
-        </div>
+<div class="flex justify-center px-5 sm:px-10">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-[1300px] w-[100%] rounded-2xl border border-secondary/20 p-6 my-4">
+    <div class="flex flex-col h-full">
+      <h1 class="text-left font-bold lg:text-4xl md:text-4xl text-3xl pb-4 text-accent">About</h1>
+      <p class="text-sm sm:text-base max-w-2xl">
+        Hi there, I'm Isaac. I'm a <span id="age"></span> year old programmer from London.<br/><br/>
+        Computer science has been my number one interest for over ten years.
+        I started with web development and moved on to game development for 4 years.
+        I then became involved in open-source app development.
+        <br><br>
+        I'm proficient in Swift, Rust, and C#, and have extensive experience with cross-platform computer graphics infrastructure, including Metal, Vulkan, and DirectX.
+      </p>
     </div>
-    <div class="w-20" />
-    <div class="flex flex-col gap-10 md:grow items-end">
-        <div class="flex flex-row text-white gap-5 md:gap-10">
-            <div class="flex">
-                <div class="icon">
-                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-rust"></i>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="icon">
-                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-swift"></i>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="icon">
-                    <Image class="p-3 sm:p-0 lg:p-2 select-none" src={Godot} alt="Godot logo"/>
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-row text-white gap-5 md:gap-10">
-            <div class="flex">
-                <div class="icon">
-                    <p class="fa text-xl md:text-2xl lg:text-3xl select-none">C#</p>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="icon">
-                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-python"></i>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="icon">
-                    <i class="text-4xl md:text-5xl lg:text-6xl fa-brands fa-html5"></i>
-                </div>
-            </div>
-        </div>
+    <div class="grow"></div>
+    <div class="hidden md:grid grid-cols-3">
+      <div class="icon">
+        <i class="fa-brands fa-rust"></i>
+      </div>
+      <div class="icon">
+        <i class="fa-brands fa-swift"></i>
+      </div>
+      <div class="icon">
+        <Image class="w-10 md:w-12 lg:w-16" src={Godot} alt="Godot logo"/>
+      </div>
+      <div class="icon">
+        <p class="fa">C#</p>
+      </div>
+      <div class="icon">
+        <i class="fa-brands fa-python"></i>
+      </div>
+      <div class="icon">
+        <i class="fa-brands fa-html5"></i>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
-    var birthday = new Date(2006, 5, 16);
-    var today = new Date();
-    var age = today.getFullYear() - birthday.getFullYear();
-    var m = today.getMonth() - birthday.getMonth();
-    
-    if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
-        age--;
-    }
-
-    var span = document.getElementById('age');
-
-    if (span != null) {
-        span.textContent = age.toString();
-    }
+  var birthday = new Date(2006, 5, 16);
+  var today = new Date();
+  var age = today.getFullYear() - birthday.getFullYear();
+  var m = today.getMonth() - birthday.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthday.getDate())) {
+    age--;
+  }
+  var span = document.getElementById('age');
+  if (span != null) {
+    span.textContent = age.toString();
+  }
 </script>
 
 <style>
-    @reference "tailwindcss";
-    
-    .icon {
-        @apply backdrop-blur-md;
-        @apply bg-stone-900/60;
-        @apply w-20;
-        @apply h-20;
-        @apply lg:w-30;
-        @apply lg:h-30;
-        @apply flex;
-        @apply items-center;
-        @apply justify-center;
-        @apply rounded-full;
-        @apply p-2;
-        @apply sm:p-5;
-        @apply drop-shadow-md;
-    }
+  @reference "tailwindcss";
+  .icon {
+    @apply w-20 h-20 lg:w-30 lg:h-30;
+    @apply flex items-center justify-center;
+    @apply rounded-full;
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply select-none;
+  }
+  
+  .icon p {
+    @apply text-xl md:text-3xl lg:text-4xl;
+  }
 </style>
