@@ -24,10 +24,9 @@ export async function GET({ params }: { params: { id: string } }) {
         return new Response("Blog post not found", { status: 404 });
     }
 
-    const [boldFont, regularFont, textFont] = await Promise.all([
-        readFile("./public/fonts/SF-Pro-Display-Bold.otf"),
-        readFile("./public/fonts/SF-Pro-Display-Regular.otf"),
-        readFile("./public/fonts/SF-Pro-Text-Regular.otf"),
+    const [boldFont, regularFont] = await Promise.all([
+        readFile("./public/fonts/EBGaramond-ExtraBold.ttf"),
+        readFile("./public/fonts/Inter-Regular.ttf"),
     ]);
 
     const { title, description, pubDate } = post.data;
@@ -43,27 +42,30 @@ export async function GET({ params }: { params: { id: string } }) {
             justify-content: flex-end;
             flex-direction: column;
             color: white;
-            background: linear-gradient(to bottom right, #5d0ec0 0%, #8a0194 100%);">
+            background: rgba(20, 55, 90, 1);">
             <div style="
                 display: flex;
                 font-size: 50px;
                 width: 1000px;
-                font-family: 'SF Pro Display';
+                color: rgba(255, 114, 81, 1);
+                font-family: 'Garamond';
                 font-weight: 700;">
                 ${title}
             </div>
             <div style="
                 display: flex;
                 font-size: 25px;
-                font-family: 'SF Pro';
+                font-family: 'Inter';
+                color: rgba(255, 255, 255, 1);
                 width: 1000px;">
                 ${description}
             </div>
             <div style="
                 padding-top: 30px;
                 display: flex;
-                font-family: 'SF Pro';
+                font-family: 'Inter';
                 width: 1000px;"
+                color: rgba(168, 180, 197, 1);
                 flex-direction: row;>
                 <div style="
                     display: flex;>
@@ -77,9 +79,8 @@ export async function GET({ params }: { params: { id: string } }) {
         width: 1200,
         height: 630,
         fonts: [
-            { name: "SF Pro", data: textFont, style: "normal", weight: 400 },
-            { name: "SF Pro Display", data: regularFont, style: "normal", weight: 500 },
-            { name: "SF Pro Display", data: boldFont, style: "normal", weight: 700 },
+            { name: "Inter", data: regularFont, style: "normal", weight: 500 },
+            { name: "Garamond", data: boldFont, style: "normal", weight: 700 },
         ],
     });
 
