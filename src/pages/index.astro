@@ -134,26 +134,50 @@ import Footer from "../components/footer.astro";
 <script>
     document.addEventListener("astro:page-load", () => {
         const boxes = document.querySelectorAll('.dot-box');
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     
         boxes.forEach(box => {
             let elem = box as HTMLElement;
 
-            elem.onmouseenter = () => {
-                elem.style.setProperty("--opacity", "40%");
-            };
-
-            elem.onmousemove = (event: MouseEvent) => {
+            const updatePosition = (clientX: number, clientY: number) => {
                 const rect = elem.getBoundingClientRect();
-                const x = ((event.clientX - rect.left) / rect.width) * 100;
-                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                const x = ((clientX - rect.left) / rect.width) * 100;
+                const y = ((clientY - rect.top) / rect.height) * 100;
                 
                 elem.style.setProperty('--mouse-x', `${x}%`);
                 elem.style.setProperty('--mouse-y', `${y}%`);
             };
-            
-            elem.onmouseleave = () => {
+
+            const showMask = () => {
+                elem.style.setProperty("--opacity", "40%");
+            };
+
+            const hideMask = () => {
                 elem.style.setProperty("--opacity", "0%");
             };
+
+            if (isTouchDevice) {
+                elem.addEventListener('touchstart', (event: TouchEvent) => {
+                    showMask();
+                    const touch = event.touches[0];
+                    updatePosition(touch.clientX, touch.clientY);
+                }, { passive: true });
+
+                elem.addEventListener('touchmove', (event: TouchEvent) => {
+                    const touch = event.touches[0];
+                    updatePosition(touch.clientX, touch.clientY);
+                }, { passive: true });
+                
+                elem.addEventListener('touchend', hideMask, { passive: true });
+            } else {
+                elem.addEventListener('mouseenter', showMask);
+
+                elem.addEventListener('mousemove', (event: MouseEvent) => {
+                    updatePosition(event.clientX, event.clientY);
+                });
+                
+                elem.addEventListener('mouseleave', hideMask);
+            }
         });
     });
 </script>
