@@ -58,6 +58,22 @@
         @apply cursor-auto;
     }
 
+    .dot-box {
+        --base-mask-x: 50%;
+        --base-mask-y: 40%;
+        --dot-spacing: 3vw;
+        --dot-size: 0.3vw;
+    }
+
+    @media (width >= 40rem) {
+        .dot-box {
+            --base-mask-x: 20%;
+            --base-mask-y: 50%;
+            --dot-spacing: 2vw;
+            --dot-size: 0.15vw;
+        }
+    }
+
     .dot-box::before {
         content: '';
         position: absolute;
@@ -65,13 +81,13 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 0.15vw, transparent 0px);
-        background-size: 2vw 2vw;
+        background-image: radial-gradient(circle, var(--color-secondary) var(--dot-size), transparent 0px);
+        background-size: var(--dot-spacing) var(--dot-spacing);
         opacity: 40%;
         pointer-events: none;
         transition: --opacity 0.3s ease;
         mask-image: radial-gradient(
-            circle 50vw at 20% 50%,
+            circle 50vw at var(--base-mask-x) var(--base-mask-y),
             black 0%,
             transparent 100%
         );
@@ -84,9 +100,9 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: radial-gradient(circle, rgba(168, 180, 197, 1) 0.15vw, transparent 0px);
-        background-size: 2vw 2vw;
-        opacity: var(--opacity, 0   );
+        background-image: radial-gradient(circle, var(--color-secondary) var(--dot-size), transparent 0px);
+        background-size: var(--dot-spacing) var(--dot-spacing);
+        opacity: var(--opacity, 0);
         pointer-events: none;
         mask-image: radial-gradient(
             circle 20vw at var(--mouse-x, 50%) var(--mouse-y, 50%),
@@ -94,7 +110,7 @@
             transparent 100%
         ),
         radial-gradient(
-            circle 50vw at 25% 50%,
+            circle 50vw at var(--base-mask-x) var(--base-mask-y),
             black 0%,
             transparent 100%
         );
