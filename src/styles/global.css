@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --default-font-family: "Inter", "sans-serif";
+    --default-font-family: var(--font-inter);
     --color-blue: rgba(20, 55, 90, 1);
     --color-accent: rgba(255, 114, 81, 1);
     --color-secondary: rgba(168, 180, 197, 1);
@@ -13,9 +13,9 @@
         @apply text-white;
         @apply bg-blue;
     }
-    
+
     h1, h2 {
-        font-family: "EB Garamond", serif;
+        font-family: var(--font-garamond);
     }
 
     .link {
@@ -130,6 +130,8 @@
             margin-top: 0.1rem;
             margin-bottom: 0.1rem;
             --tw-prose-links: var(--color-accent);
+            --tw-prose-quote-borders: var(--color-accent);
+            --tw-prose-bullets: var(--color-white);
         }
 
         p {
@@ -162,6 +164,14 @@
             @apply px-5;
             @apply md:px-0;
             @apply object-scale-down
+        }
+
+        blockquote p::before {
+            content: "";
+        }
+
+        blockquote p::after {
+            content: "";
         }
 
         code::before {

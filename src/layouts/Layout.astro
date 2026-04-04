@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 
 export interface Props {
@@ -26,9 +27,6 @@ const { title, description } = Astro.props;
 		<meta property="og:site_name" content="isaacmarovitz.com" />
 		<slot name="meta" />
 		<title>{title}</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<!-- Google tag (gtag.js) -->
 		<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-PT8W8Z8KDR"></script>
 		<script type="text/partytown">
@@ -38,6 +36,8 @@ const { title, description } = Astro.props;
 
 			gtag('config', 'G-PT8W8Z8KDR');
 		</script>
+		<Font cssVariable="--font-inter" preload />
+		<Font cssVariable="--font-garamond" preload />
 	</head>
 	<body style="margin: 0 auto; float: none;">
 		<slot />

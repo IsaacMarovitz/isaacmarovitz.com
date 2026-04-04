@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
@@ -17,4 +17,19 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+  experimental: {
+    fonts: [{
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      fallbacks: ["sans-serif"]
+    },
+    {
+      provider: fontProviders.google(),
+      name: "EB Garamond",
+      cssVariable: "--font-garamond",
+      weights: [800],
+      fallbacks: ["serif"]
+    }]
+  }
 });
