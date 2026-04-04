@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://isaacmarovitz.com",
+  security: { csp: true },
   integrations: [
     mdx(),
     partytown({
@@ -17,8 +18,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  experimental: {
-    fonts: [{
+  fonts: [
+    {
       provider: fontProviders.google(),
       name: "Inter",
       cssVariable: "--font-inter",
@@ -30,6 +31,6 @@ export default defineConfig({
       cssVariable: "--font-garamond",
       weights: [800],
       fallbacks: ["serif"]
-    }]
-  }
+    }
+  ]
 });
