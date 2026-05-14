@@ -10,16 +10,19 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/mdx": "^5.0.3",
-        "@astrojs/partytown": "^2.1.6",
+        "@astrojs/mdx": "^5.0.5",
+        "@astrojs/partytown": "^2.1.7",
         "@astrojs/rss": "^4.0.18",
         "@resvg/resvg-js": "^2.6.2",
         "@tailwindcss/typography": "^0.5.19",
-        "@tailwindcss/vite": "^4.2.2",
-        "astro": "^6.1.3",
-        "bun-types": "^1.3.11",
+        "@tailwindcss/vite": "^4.3.0",
+        "astro": "^6.3.3",
         "satori": "^0.26.0",
         "satori-html": "^0.3.2",
-        "tailwindcss": "^4.2.2"
+        "tailwindcss": "^4.3.0"
+    },
+    "devDependencies": {
+        "sharp": "^0.34.5",
+        "wrangler": "^4.90.1"
     }
 }
