@@ -6,9 +6,11 @@ import { ClientRouter } from "astro:transitions";
 export interface Props {
 	title: string;
 	description: string;
+	atprotoUri?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, atprotoUri } = Astro.props;
+const did = "did:plc:ftdxrg5uqrtusxxoyqocrecq";
 ---
 
 <!DOCTYPE html>
@@ -23,6 +25,10 @@ const { title, description } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta name="fediverse:creator" content="@isaacmarovitz@treehouse.systems" />
+		<meta name="atproto:did" content={did} />
+        <link rel="well-known" href="/.well-known/site.standard.publication" />
+        <link rel="site.standard.publication" href={`at://${did}/site.standard.publication/isaacmarovitz.com`} />
+        {atprotoUri && <link rel="site.standard.document" href={atprotoUri} />}
 		<meta property="og:locale" content="en_GB" />
 		<meta property="og:site_name" content="isaacmarovitz.com" />
 		<slot name="meta" />

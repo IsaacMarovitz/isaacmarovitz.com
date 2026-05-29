@@ -8,6 +8,9 @@ const posts = defineCollection({
     pubDate: z.coerce.date(),
     description: z.string(),
     tags: z.array(z.string()),
+    atprotoUri: z.string()
+        .regex(/^(at:\/\/|https?:\/\/).+/, { message: "Must be a valid AT-URI or web URL" })
+        .optional(),
   }),
 });
 

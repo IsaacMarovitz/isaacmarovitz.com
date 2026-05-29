@@ -26,7 +26,7 @@ var dateString = post.data.pubDate.toLocaleDateString("en-GB", options);
 const ogImageUrl = new URL(Astro.url.pathname + "og.png", Astro.site).href;
 ---
 
-<Layout title=`Isaac Marovitz - ${post.data.title}` description={post.data.description}>
+<Layout title=`Isaac Marovitz - ${post.data.title}` description={post.data.description} atprotoUri={post.data.atprotoUri}>
     <Fragment slot="meta">
         <meta property="og:title" content={post.data.title} />
         <meta property="og:description" content={post.data.description} />
