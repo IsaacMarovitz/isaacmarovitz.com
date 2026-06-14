@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import profileRef from '../images/profile.webp';
+import crossoverRef from '../images/crossover.webp';
 import marathonRef from '../images/marathon.webp';
 import whiskyRef from '../images/whisky.webp';
 import playcoverRef from '../images/playcover.webp';
@@ -76,6 +77,16 @@ import Footer from "../components/footer.astro";
         <div id="Projects"></div>
         <div class="flex flex-col items-center px-5 sm:px-10">
             <div class="flex max-w-[1300px] w-[100%] items-center flex-col gap-4">
+                <div class="grid grid-cols-1 gap-y-4 sm:gap-x-4 w-full">
+                    <div class="col-span-1">
+                        <ProjectCard
+                            name="CrossOver"
+                            description=" Run your Windows® app on macOS and Linux. Building a new game-centric launcher experience for CrossOver 27."
+                            link="https://www.codeweavers.com/crossover/"
+                            image={crossoverRef}
+                        />
+                    </div>
+                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-y-4 sm:gap-x-4">
                     <div class="col-span-2 sm:col-span-1 md:col-span-3">
                         <ProjectCard
@@ -98,7 +109,7 @@ import Footer from "../components/footer.astro";
                     <div class="col-span-1 sm:col-span-1 md:col-span-2">
                         <ProjectCard
                             name="PlayCover"
-                            description="A macOS app that allows you to run iOS apps and games through Mac Catalyst. PlayCover also extends Catalyst with additional features such as device ID spoofing, keymapping, and resolution control."
+                            description="A macOS app that allows you to run iOS apps and games through Mac Catalyst, extended with device ID spoofing, keymapping, and resolution control."
                             link="https://github.com/PlayCover/PlayCover"
                             image={playcoverRef}
                         />
@@ -135,7 +146,7 @@ import Footer from "../components/footer.astro";
     document.addEventListener("astro:page-load", () => {
         const boxes = document.querySelectorAll('.dot-box');
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
+
         boxes.forEach(box => {
             let elem = box as HTMLElement;
 
@@ -143,7 +154,7 @@ import Footer from "../components/footer.astro";
                 const rect = elem.getBoundingClientRect();
                 const x = ((clientX - rect.left) / rect.width) * 100;
                 const y = ((clientY - rect.top) / rect.height) * 100;
-                
+
                 elem.style.setProperty('--mouse-x', `${x}%`);
                 elem.style.setProperty('--mouse-y', `${y}%`);
             };
@@ -167,7 +178,7 @@ import Footer from "../components/footer.astro";
                     const touch = event.touches[0];
                     updatePosition(touch.clientX, touch.clientY);
                 }, { passive: true });
-                
+
                 elem.addEventListener('touchend', hideMask, { passive: true });
             } else {
                 elem.addEventListener('mouseenter', showMask);
@@ -175,7 +186,7 @@ import Footer from "../components/footer.astro";
                 elem.addEventListener('mousemove', (event: MouseEvent) => {
                     updatePosition(event.clientX, event.clientY);
                 });
-                
+
                 elem.addEventListener('mouseleave', hideMask);
             }
         });
