@@ -13,19 +13,19 @@ const { name, description, link, image } = Astro.props;
   aria-label={`GitHub of ${name}`}
   target="_blank"
   rel="noreferrer noopener"
-  class="group relative flex flex-col h-full min-h-[400px] rounded-2xl overflow-hidden border border-secondary/20 hover:border-accent transition-all duration-300 hover:scale-[102%]"
+  class="group relative flex flex-col h-full min-h-100 rounded-2xl overflow-hidden border border-secondary/20 hover:border-accent transition-all duration-300 hover:scale-[102%]"
 >
   <div class="absolute inset-0">
     <Image
-      class="w-full h-full object-cover object-left-top"
+      class="w-full h-full object-cover object-top-left"
       alt={`Screenshot of ${name}`}
       src={image}
     />
   </div>
-  
-  <div class="absolute inset-0 bg-gradient-to-t from-blue via-blue/10 to-transparent"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-blue via-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></div>
-  
+
+  <div class="absolute inset-0 bg-linear-to-t from-blue via-blue/10 to-transparent"></div>
+  <div class="absolute inset-0 bg-linear-to-t from-blue via-blue/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"></div>
+
   <div class="relative mt-auto p-6 z-10">
     <h2 class="font-bold text-2xl sm:text-3xl text-white group-hover:text-accent mb-3 transition-colors duration-300">
       {name}

@@ -22,13 +22,13 @@ const posts = (await getCollection("posts")).sort(
                     <BlogNav allPosts={false} />
                     <div class="flex flex-col gap-2">
                         <h1>Blog Posts</h1>
-                    </div>  
+                    </div>
                 </div>
                 <div class="py-5 text-secondary">
                     <hr />
                 </div>
                 <ul class="flex flex-col gap-10 items-start">
-                    { posts.map((post: any) => 
+                    { posts.map((post: any) =>
                         <li>
                             <BlogPost post={post} />
                         </li>
@@ -43,7 +43,7 @@ const posts = (await getCollection("posts")).sort(
 
 <style>
     @reference "tailwindcss";
-    
+
     h1 {
         @apply font-extrabold;
         @apply text-2xl;

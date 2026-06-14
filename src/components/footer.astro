@@ -4,7 +4,7 @@ import NotByAi from '../images/not-by-ai.svg';
 ---
 
 <div class="flex justify-center">
-    <div class="text-white text-center py-10 sm:snap-end flex flex-row flex-nowrap justify-between items-center max-w-[1300px] w-[100%]">
+    <div class="text-white text-center py-10 sm:snap-end flex flex-row flex-nowrap justify-between items-center max-w-325 w-full">
         <a href="https://notbyai.fyi" class="hidden sm:inline">
             <Image src={NotByAi} alt="Written by Human, Not by AI"/>
         </a>
@@ -37,14 +37,14 @@ import NotByAi from '../images/not-by-ai.svg';
             ></a>
         </div>
         <p>
-            © <span id="currentYear"></span> Isaac Marovitz 
+            © <span id="currentYear"></span> Isaac Marovitz
         </p>
     </div>
 </div>
 
 <script>
     var span = document.getElementById('currentYear');
-    
+
     if (span != null) {
         span.textContent = new Date().getFullYear().toString();
     }
