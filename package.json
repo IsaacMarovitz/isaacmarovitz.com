@@ -18,7 +18,7 @@
         "@tailwindcss/typography": "^0.5.20",
         "@tailwindcss/vite": "^4.3.3",
         "astro": "^7.2.0",
-        "satori": "^0.29.0",
+        "satori": "^0.33.3",
         "satori-html": "^0.3.2",
         "tailwindcss": "^4.3.3"
     },
