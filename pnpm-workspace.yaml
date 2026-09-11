@@ -3,7 +3,17 @@ allowBuilds:
   sharp: true
   workerd: true
 minimumReleaseAgeExclude:
-  - '@atproto/api@0.20.31'
-  - miniflare@4.20260721.0
+  - '@atproto/api@0.20.31 || 0.20.44'
+  - miniflare@4.20260721.0 || 5.20260911.0-alpha
   - satori@0.28.2
-  - wrangler@4.113.0
+  - wrangler@4.113.0 || 4.131.1
+  - '@atproto/common-web@0.5.12'
+  - '@atproto/lexicon@0.7.14'
+  - '@atproto/syntax@0.7.6'
+  - '@atproto/xrpc@0.8.13'
+  - '@cloudflare/workerd-darwin-64@1.20260911.1'
+  - '@cloudflare/workerd-darwin-arm64@1.20260911.1'
+  - '@cloudflare/workerd-linux-64@1.20260911.1'
+  - '@cloudflare/workerd-linux-arm64@1.20260911.1'
+  - '@cloudflare/workerd-windows-64@1.20260911.1'
+  - workerd@1.20260911.1
