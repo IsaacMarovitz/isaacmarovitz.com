@@ -1,0 +1,159 @@
+---
+title: "To 'comp or not to 'comp"
+pubDate: 2026-10-07
+description: "What makes a recomp or a decomp and when to use them."
+tags: ["Recomps", "Decomps", "AI", "LLMs", "Emulation"]
+atprotoUri: "at://did:plc:ftdxrg5uqrtusxxoyqocrecq/site.standard.document/3mxcp5nmewbw4"
+---
+
+import { Image } from "astro:assets";
+import toolchain from "../../images/comps/toolchain.jpg";
+import sarecomp from "../../images/comps/sarecomp.png";
+
+As LLMs continue to make our lives hell, there has been a dramatic rise in the number of decomps and recomps made in whole or in part by LLMs. I'm not going to talk about the associated risk with that, as I've largely covered that already in [this post](/posts/vibe-coding), instead I want to focus on what makes a recomp a recomp, a decomp a decomp, and why you should even do it instead of emulation.
+
+# What is compilation?
+
+To understand how to un-compile something we should start with what it means to compile something.
+Compilation is a process by which a *compiler* takes your source code, written in a compiled language like C or C++, and it turns into a finished binary full of yummy machine code that your CPU knows how to read.
+
+<div class="img-container">
+    <Image src={toolchain} alt="GCC Compiler Toolchain Diagram from Wikipedia" class="zoomable-img" quality="high" />
+    *Typical compiler toolchain.*
+</div>
+
+This is different from what an interpreted language like Python does, where the code stays in a readable format, and instead another program reads your code and interprets what to do in real-time, translating it into something your CPU knows what to do with.
+
+Compilation is great for a number of reasons. It makes your code run as fast as it possibly can on your machine by removing any overhead from talking to your CPU in a language it understands, reduces the size of your instructions massively, as machine code is significantly smaller than source code, and as a nice side effect, makes your code hard to read.
+For companies and game studios making a commercial product, this is key, as the end product is not trivially modifiable (and these days often comes with additional obfuscation like Denuvo).
+
+This becomes a problem, though, if we ever want to run this program on something new or different, where the CPU doesn't speak the same dialect of machine code, or the operating system doesn't understand the API calls your program is looking for.
+
+# Emulation and Compatibility Layers
+
+Traditionally, to overcome this problem we've used emulation and compatibility layers. The difference is a bit technical and up to interpretation, so for the sake of simplicity, we're going to treat them as if they are the same thing.
+This covers emulators like Ryujinx, RPCS3, or Dolphin or compatibility layers like Wine.
+These are programs that kind of do what an interpreted language does: they translate some source (in this case compiled machine code and foreign APIs) into something that another machine can understand.
+
+This comes with some overhead as you can imagine. One of the core benefits of compilation is there doesn't need to be any work to make your CPU understand what your program wants to do, and this step basically undoes that. Overhead gets particularly bad whenever the host machine doesn't have a neat translation for whatever the guest machine wants to do.
+
+This can be [specific instructions](https://www.youtube.com/watch?v=40tyEVx_umY), API calls, or GPU design differences, but the result is often that the program runs *significantly* slower than it did on the original machine.
+
+Emulation and compatibility layers also don't really make the process of modifying the behaviour of the program any easier. It's still compiled machine code so you're still patching binary.
+
+# 'Comps
+
+This is where decomps and recomps come in. They seek to remove the translation step by undoing the compilation step, to different extents for each process.
+
+A **decomp** fully reverses the compilation process, giving us a (hopefully) complete and clean approximation of the source code that compiles back to the exact same binary we started with. We are then free to modify anything with just as much ease as the original developers, and fully replace API calls and architecture specific assumptions to eliminate overhead when porting to new platforms.
+
+This is not a straightforward process by any means; compilation is destructive, so a lot of information is either obfuscated or entirely lost in the process. Function names, variable names, sometimes even entire functions themselves are removed, shuffled, globbed together and split apart as the compiler sees fit to make the program run as fast as possible on the target hardware. Decompiling means undoing all that work and trying to find a plausible source that would lead to the compiler making those same choices.
+
+Because of the complexity of decompilation, it has typically been reserved for very popular (and relatively simple) games like [Super Mario 64](https://github.com/n64decomp/sm64) where there is enough community support and knowledge to allow a game to be fully reverse engineered in a reasonable amount of time.
+
+A **recomp** is the popular cool kid on the block (although the concept has been around for a while). Instead of fully reverse engineering the binary, we perform a form of ahead-of-time translation. We rewrite the instructions in the source binary as portable C code, that is, code that is not architecture specific, and then **re**compile the whole program for a new architecture. APIs that assume something about the underlying hardware can be individually decompiled and redirected to make the program run like nothing ever happened.
+
+This has a number of notable advantages over a decomp. It is a significantly faster process, since reverse engineering is limited to the few functions that would otherwise prevent a program from functioning on an unfamiliar device. This means you can have a rudimentary recomp running in a matter of days, instead of months or years.
+
+This also makes porting of significantly more complicated games, like [Sonic Unleashed](https://github.com/hedge-dev/UnleashedRecomp), actually feasible. But as Darío outlined in [his fantastic thread on Bluesky](https://bsky.app/profile/dariosamo.bsky.social/post/3mx3qilejkc2d) (which is basically required reading for this post), it is the steps that follow, the polishing, that make recompilations still an intensive process to achieve something nice to use.
+
+Recomps also come with some overhead. While they are typically significantly faster than emulation, under the hood you're still effectively emulating the guest CPU's instructions. The compiler will remove some of that overhead by performing its own optimisations on the C code, but it's not gonna be as perfect as a decomp.
+
+Like a decomp, recomps allow for game-specific patches so we can support nice features like resizing the window at runtime, and replacing specific problematic shaders.
+You can even get really fancy like Unleashed Recomp, and basically eliminate shader and pipeline compilation stutter, something that is basically impossible for an emulator to do generically for every game.
+
+# To 'comp or not to 'comp
+
+Finally, with all of that background out of the way we can talk about when decomps and recomps make sense, and when they even qualify as such at all.
+
+In general, the need for a decomp or recomp is increased by a few factors:
+- Lack of an existing official PC port
+- Very performance intensive, inaccurate, or unstable emulation options
+
+If you look at a game like SM64, Unleashed or Sonic '06, they hit both of these on the head. None of these games have an official PC port, and emulation for the given consoles, Nintendo 64 and Xbox 360, is very difficult to get right and to do so performantly.
+
+This significantly restricts people's ability to play the game, and also limits aspects of the experience like controller options or resolution, to whatever the original console is capable of.
+
+In this environment, these games are clearly good candidates for either decomps or recomps.
+
+Now let's look at some examples that are *not* good candidates.
+
+## Pokémon Red
+
+This is a bad choice for many reasons. Game Boy emulation has been very inexpensive and accurate for many years, and the gen 1 Pokémon games don't even take advantage of any particular hardware quirk that makes them difficult to run. But beyond that, there is a much more pressing issue.
+
+The gen 1 Pokémon games are not written in a compiled language, so it is impossible to decompile or recompile them in the first place. These games, along with every other Game Boy game to my knowledge, were written directly in assembly, so there is no source to reconstruct (with the exception of stuff like comments).
+
+It is therefore quite baffling to me that there is a [Gen1Recomp](https://github.com/bryanthaboi/gen1recomp) project. The `README` itself acknowledges that it is not a recomp:
+
+> And before you say, "that's not a recomp", you're wrong. Recomp is an acronym. **Reverse Engineering Causes Obsessive Mental Problems**
+
+While this may be cute or funny for the developer, it really only serves to confuse the public, who generally assume that when you call something a recomp, it is a recomp. This is evident from the fact that outlets like [Kotaku](https://kotaku.com/pokemon-red-blue-recompilation-project-voxel-3d-mod-2000720281) have made articles about this project calling it a "recomp", and there was a large (now deleted) [Reddit post](https://www.reddit.com/r/recomps/comments/1v7vsru/gen1_recomp_dramatic_shape_voxel_mod_release) on r/recomps, a subreddit which incessantly promotes AI slopcomps.
+
+## Sonic Adventure 1
+
+This instance is more complicated as while SA1 has a PC version, SADX, it is generally considered rather rough around the edges, changing many aspects of the original Dreamcast version, either due to technical restrictions or efforts to "improve" the game.
+
+Recently this game has been subject to a ["recomp" made with AI](https://github.com/sonicfreak1337/SARecomp). A quick glance at the code will make the atrocious level of quality clear. 
+
+<div class="img-container">
+    <Image src={sarecomp} alt="SA Recomp source code" class="zoomable-img" quality="high" />
+    <a href="https://x.com/SPEEPSHighway/status/2107896979246272845">*"Let's take a look under the hood- OH MY GOD" - SPEEPSHighway*</a>
+</div>
+
+This is an example where it's clear the developer of this project is not at all in tune with the existing community surrounding the game. Not only is Dreamcast emulation plenty accurate and fast, but there exists a wealth of mods that bring the existing PC port on par with the Dreamcast experience.
+
+Even more additionally, a decompilation of Sonic Adventure DX is already in progress.
+
+This is all stuff that someone who didn't only care about clout chasing would know, and is more or less a massive spit in the face of the people who have been working on this game for decades.
+
+## ReXGlue Recomps
+
+In this case I'm covering a whole class of recomps. Since these are 360 games, many of the favourable conditions for recomps that inspired projects like Unleashed Recompiled apply. So why are these on the naughty list?
+
+[ReXGlue](https://github.com/rexglue/rexglue-sdk) is a set of tools that seeks to make 360 recomps even more streamlined. While [XenonRecomp](https://github.com/hedge-dev/XenonRecomp) largely makes the CPU-side a breeze, with only thin shims needed for the 360's various system APIs, the GPU-side recompiler used by Unleashed, [XenosRecomp](https://github.com/hedge-dev/XenosRecomp), takes a relatively hands-off approach.
+It only helps you translate shaders; a significant amount of reverse engineering work is still required to support features like custom resolutions, frame rate limiters (or lack thereof) etc.
+This complexity is immediately evident to anyone who has taken a glance at Unleashed's [video.cpp](https://github.com/hedge-dev/UnleashedRecomp/blob/main/UnleashedRecomp/gpu/video.cpp).
+
+In an effort to solve this, ReXGlue opted to replace Unleashed's careful API-level shims with the entire Xenia GPU emulation implementation.
+
+Hey wait a second, I thought that a major benefit of recomps was avoiding the GPU overhead that comes with emulation? Correct, it is! This change regresses a significant benefit of this whole process.
+
+This is especially bad since most of the time, games running in Xenia are GPU-limited, not CPU-limited, which means we've added back the thing that made emulation a bad choice for 360 games in the first place. However, because the CPU-side has technically been rebuilt "natively", they still get advertised as "recomps" with many end users and reporters being completely unaware of this crucial difference.
+
+To be clear, I don't blame the creators of ReXGlue necessarily for this. I've spoken to at least one of them before, and it sounds like they are aware of, and are actively working to remove this bottleneck by returning to a more high-level approach, but in the meantime more and more ReXGlue-based recomps, which have done little to no work to optimise their GPU code, are boasting performance improvements on par with Unleashed Recomp, which is just not true.
+
+# Misinformation & Bad Faith
+
+The source of this confusion has, unfortunately, not been accidental. Channels like [Video Game Esoterica](https://www.youtube.com/channel/UCn2pQB4jsCTLUtx2NIkCvUg) do not do their due diligence to determine the quality or utility of the projects they promote, opting instead for clickbait thumbnails with "Big Decomp Energy!" written in bold letters.
+This does not come purely from a place of ignorance either, as VGE in particular has [actively suppressed people like Darío](https://bsky.app/profile/dariosamo.bsky.social/post/3mwua43z4v22k) attempting to correct misinformation in the comments.
+
+Other projects have actively implied that trusted members of the reverse engineering scene are a part of, or somehow contributed to their projects like The Golden Bolt being misattributed on a slop Ratchet & Clank 1-3 decomp.
+
+<div class="flex justify-center">
+    <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:lhtm654cfnqs7lmnm2mdzneg/app.bsky.feed.post/3mwvxxw6isc2i" data-bluesky-cid="bafyreiaxdjdgpy7yomhq5zefgmqta7b6vcr245hap4qt6c7ethx7hmvu54" data-bluesky-embed-color-mode="system">
+        I&#x27;m not linking it, but I&#x27;ve learned of an AI slopcoded Ratchet &amp; Clank 1-3 decompilation project, that: 
+        
+        * Lists my videos in their credits???
+        * Scraped the entirety of the R&amp;C modding Discord w/o consent, leading to that server being locked down.
+        
+        Let me plainly state: Fuck you. &mdash; The Golden Bolt (<a href="https://bsky.app/profile/did:plc:lhtm654cfnqs7lmnm2mdzneg?ref_src=embed">@thegoldenbolt.com</a>) <a href="https://bsky.app/profile/did:plc:lhtm654cfnqs7lmnm2mdzneg/post/3mwvxxw6isc2i?ref_src=embed">2 October 2026 at 14:13</a>
+    </blockquote>
+    <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+</div>
+
+This gets to the heart of why any of this even matters in the first place. These projects are doing the exact *opposite* of what a recomp or decomp are meant to do.
+- They do not lead to any new insights into the underlying systems of the game.
+- They do not engage with the community.
+- They do not encourage further reverse engineering work.
+
+As cliché as it is to say, the journey is just as important as the destination. Many others in the reverse engineering and modding community and I have felt incredibly demoralised and unsettled by the speed, popularity, inaccuracy, and lack of care or attention shown in these drive-by 'comps.
+
+The problem isn't even that these projects are made at all, it's that they're presented as production ready, quality end products when in reality, they don't progress beyond hobby projects.
+When YouTubers and reporters celebrate and promote slop, it makes you question if what you're doing is even worth the time and effort at all.
+
+Of course, the answer is that it is worth it. There are many people, in and out of the modding scene, who value human-written code and dedication. There are even more people who are simply misinformed or unaware of whether their 'comps are ethically-sourced and organic or factory farm slop.
+
+The responsibility is on users to have a discerning eye, and **especially** on people with a platform, to do their due diligence before promoting projects.
+
+*Thank you to [Skyth](https://github.com/blueskythlikesclouds), [Darío](https://github.com/DarioSamo), and [Sewer56](https://sewer56.dev/) for their thoughts or proofreading.*

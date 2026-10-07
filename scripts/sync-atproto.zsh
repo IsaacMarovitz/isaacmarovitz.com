@@ -10,8 +10,8 @@ PDS_URL="${ATPROTO_PDS_URL:-https://bsky.social}"
 IDENTIFIER="${ATPROTO_IDENTIFIER}"
 PASSWORD="${ATPROTO_APP_PASSWORD}"
 
-if [[ -z "$IDENTIFIER" || -z "$PASSWORD" ]]; then
-  echo "Error: Missing ATPROTO_IDENTIFIER or ATPROTO_APP_PASSWORD in environment."
+if [[ -z "$IDENTIFIER" || -z "$PASSWORD" || -z "$ATPROTO_PUBLICATION_RKEY" ]]; then
+  echo "Error: Missing ATPROTO_IDENTIFIER, ATPROTO_APP_PASSWORD, or ATPROTO_PUBLICATION_RKEY in environment."
   exit 1
 fi
 
@@ -25,6 +25,20 @@ if ! command -v yq &> /dev/null; then
   echo "Error: yq is not installed. Please run: brew install yq"
   exit 1
 fi
+
+zmodload zsh/datetime
+
+# Generate a TID record key from the current time
+generate_tid() {
+  local charset="234567abcdefghijklmnopqrstuvwxyz"
+  local n=$(( (epochtime[1] * 1000000 + epochtime[2] / 1000) << 10 | (RANDOM & 1023) ))
+  local tid="" i
+  for i in {1..13}; do
+    tid="${charset:$(( n & 31 )):1}$tid"
+    n=$(( n >> 5 ))
+  done
+  echo "$tid"
+}
 
 echo "Authenticating with ATProto network..."
 
@@ -49,9 +63,6 @@ for file in "$POSTS_DIR"/*.mdx(N); do
   FILENAME=$(basename "$file")
   ID="${FILENAME%.mdx}"
 
-  # Format an immutable record key conforming to protocol specs
-  RKEY=$(echo "$ID" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9._~-]/_/')
-
   # Safely extract ONLY the frontmatter header chunk to parse with yq
   FRONTMATTER_RAW=$(awk '/^---/{p++; if(p==2){print; exit}} p>=1' "$file")
 
@@ -59,6 +70,14 @@ for file in "$POSTS_DIR"/*.mdx(N); do
   TITLE=$(echo "$FRONTMATTER_RAW" | yq '.title // ""')
   DESC=$(echo "$FRONTMATTER_RAW" | yq '.description // ""')
   PUB_DATE=$(echo "$FRONTMATTER_RAW" | yq '.pubDate // ""')
+  EXISTING_URI=$(echo "$FRONTMATTER_RAW" | yq '.atprotoUri // ""')
+
+  # Reuse the record key from a previous sync, otherwise mint a new TID
+  if [[ -n "$EXISTING_URI" ]]; then
+    RKEY="${EXISTING_URI##*/}"
+  else
+    RKEY=$(generate_tid)
+  fi
 
   # Format standard date fallback
   if [[ -z "$PUB_DATE" ]]; then
@@ -72,6 +91,7 @@ for file in "$POSTS_DIR"/*.mdx(N); do
   # Generate valid site.standard.document JSON layout with the required publishedAt field
   JSON_PAYLOAD=$(jq -n \
       --arg did "$DID" \
+      --arg pub "$ATPROTO_PUBLICATION_RKEY" \
       --arg path "/posts/$ID" \
       --arg title "${TITLE:-Untitled}" \
       --arg content "${DESC:-}" \
@@ -82,7 +102,7 @@ for file in "$POSTS_DIR"/*.mdx(N); do
         rkey: "'"$RKEY"'",
         record: {
           "$type": "site.standard.document",
-          site: ("at://" + $did + "/site.standard.publication/isaacmarovitz.com"),
+          site: ("at://" + $did + "/site.standard.publication/" + $pub),
           path: $path,
           title: $title,
           publishedAt: $publishedAt,
@@ -111,7 +131,6 @@ for file in "$POSTS_DIR"/*.mdx(N); do
   echo "Successfully synchronized record: site.standard.document/$RKEY"
 
   # Clean check to ensure we only append the atprotoUri to your local markdown file if it isn't already present
-  EXISTING_URI=$(echo "$FRONTMATTER_RAW" | yq '.atprotoUri // ""')
   if [[ -z "$EXISTING_URI" && -n "$ATPROTO_URI" && "$ATPROTO_URI" != "null" ]]; then
     TEMP_FILE=$(mktemp)
 

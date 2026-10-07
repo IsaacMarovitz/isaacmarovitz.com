@@ -4,7 +4,7 @@ export const prerender = true;
 
 export const GET: APIRoute = () => {
     const did = "did:plc:ftdxrg5uqrtusxxoyqocrecq";
-    const rkey = "isaacmarovitz.com";
+    const rkey = "3mxcp4fwt3a25";
 
     const atUri = `at://${did}/site.standard.publication/${rkey}`;
 
