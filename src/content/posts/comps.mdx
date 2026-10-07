@@ -33,7 +33,7 @@ This becomes a problem, though, if we ever want to run this program on something
 
 Traditionally, to overcome this problem we've used emulation and compatibility layers. The difference is a bit technical and up to interpretation, so for the sake of simplicity, we're going to treat them as if they are the same thing.
 This covers emulators like Ryujinx, RPCS3, or Dolphin or compatibility layers like Wine.
-These are programs that kind of do what an interpreted language does: they translate some source (in this case compiled machine code and foreign APIs) into something that another machine can understand.
+These are programs that kind of do what an interpreted language does: they interpret some source (in this case compiled machine code and foreign APIs) as something that another machine can understand.
 
 This comes with some overhead as you can imagine. One of the core benefits of compilation is there doesn't need to be any work to make your CPU understand what your program wants to do, and this step basically undoes that. Overhead gets particularly bad whenever the host machine doesn't have a neat translation for whatever the guest machine wants to do.
 
